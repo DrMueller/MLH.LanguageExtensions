@@ -4,9 +4,13 @@ using System.Text;
 
 namespace Mmu.Mlh.LanguageExtensions
 {
-    public class Tra
+    public class Tra : IDisposable
     {
         public static void Tra2(string t)
+        {
+        }
+
+        public void Dispose()
         {
         }
     }
