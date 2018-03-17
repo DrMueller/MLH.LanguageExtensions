@@ -10,18 +10,19 @@
     <Authors>DrMueller</Authors>
     <Description>DrMuellers little Language Extensions</Description>
     <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/DrMueller/MLH.LanguageExtensions/master/Sources/Application/Infrastructure/Assets/M.ico</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/DrMueller/MLH.LanguageExtensions/master/Sources/Application/Infrastructure/Assets/M.png</PackageIconUrl>
     <RepositoryUrl></RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageLicenseUrl></PackageLicenseUrl>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Assets\" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0" />
   </ItemGroup>
 
 </Project>
