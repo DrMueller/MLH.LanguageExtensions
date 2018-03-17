@@ -10,7 +10,7 @@
     <Authors>DrMueller</Authors>
     <Description>DrMuellers little Language Extensions</Description>
     <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
+    <PackageIconUrl>https://github.com/DrMueller/MLH.LanguageExtensions/blob/master/Sources/Application/Infrastructure/Assets/M.ico</PackageIconUrl>
     <RepositoryUrl></RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageLicenseUrl></PackageLicenseUrl>
