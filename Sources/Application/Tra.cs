@@ -8,7 +8,6 @@ namespace Mmu.Mlh.LanguageExtensions
     {
         public static void Tra2(string t)
         {
-            
         }
     }
 }
