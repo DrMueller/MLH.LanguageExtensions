@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Mmu.Mlh.LanguageExtensions.Areas.ModelAbstractions;
+using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
 using Mmu.Mlh.LanguageExtensions.Areas.Specifications.Core.Handlers;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Specifications.Core

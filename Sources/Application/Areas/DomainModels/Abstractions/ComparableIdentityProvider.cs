@@ -1,15 +1,15 @@
 ﻿using System;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.ModelAbstractions
+namespace Mmu.Mlh.LanguageExtensions.Areas.DomainModels.Abstractions
 {
-    // http://enterprisecraftsmanship.com/2014/11/08/domain-object-base-class/
-    public abstract class Entity
+    public abstract class ComparableIdentityProvider
     {
-        public virtual string Id { get; set; }
+        protected abstract string ComparedId { get; }
+        private bool IsTransient => string.IsNullOrEmpty(ComparedId);
 
         public override bool Equals(object obj)
         {
-            var compareTo = obj as Entity;
+            var compareTo = obj as ComparableIdentityProvider;
 
             if (ReferenceEquals(compareTo, null))
             {
@@ -26,12 +26,12 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.ModelAbstractions
                 return false;
             }
 
-            return !IsTransient() && !compareTo.IsTransient() && Id == compareTo.Id;
+            return !IsTransient && !compareTo.IsTransient && ComparedId == compareTo.ComparedId;
         }
 
-        public override int GetHashCode() => (GetType() + Id).GetHashCode(StringComparison.Ordinal);
+        public override int GetHashCode() => (GetType() + ComparedId).GetHashCode(StringComparison.OrdinalIgnoreCase);
 
-        public static bool operator ==(Entity a, Entity b)
+        public static bool operator ==(ComparableIdentityProvider a, ComparableIdentityProvider b)
         {
             if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
             {
@@ -46,8 +46,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.ModelAbstractions
             return a.Equals(b);
         }
 
-        public static bool operator !=(Entity a, Entity b) => !(a == b);
-
-        private bool IsTransient() => string.IsNullOrEmpty(Id);
+        public static bool operator !=(ComparableIdentityProvider a, ComparableIdentityProvider b) => !(a == b);
     }
 }

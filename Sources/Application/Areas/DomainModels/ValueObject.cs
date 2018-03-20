@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.ModelAbstractions
+namespace Mmu.Mlh.LanguageExtensions.Areas.DomainModels
 {
     // https://lostechies.com/jimmybogard/2007/06/25/generic-value-object-equality/
     public abstract class ValueObject<T> : IEquatable<T>
