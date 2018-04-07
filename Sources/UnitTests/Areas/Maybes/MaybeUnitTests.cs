@@ -85,7 +85,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.Areas.Maybes
 
             // Assert
             Assert.That(noneMethodWasCalled, Is.False);
-            Assert.That(someMethodWasCalled, Is.False);
+            Assert.That(someMethodWasCalled, Is.True);
         }
     }
 }
