@@ -1,4 +1,6 @@
-﻿using StructureMap;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection;
+using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Implementation;
+using StructureMap;
 
 namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
 {
@@ -9,8 +11,11 @@ namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
             Scan(
                 scanner =>
                 {
+                    scanner.AssemblyContainingType<LanguageExtensionsRegistry>();
                     scanner.WithDefaultConventions();
                 });
+
+            For<ITypeReflectionService>().Use<TypeReflectionService>();
         }
     }
 }

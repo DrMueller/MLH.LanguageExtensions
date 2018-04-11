@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Implementation
 {
-    public class TypeReflectionService : ITypeReflectionService
+    internal class TypeReflectionService : ITypeReflectionService
     {
         public bool CheckIfTypeIsAssignableToGenericType(Type givenType, Type genericType)
         {
