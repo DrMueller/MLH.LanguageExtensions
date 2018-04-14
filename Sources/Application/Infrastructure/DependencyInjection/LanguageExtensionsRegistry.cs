@@ -1,4 +1,5 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection;
+﻿using System.Diagnostics;
+using Mmu.Mlh.LanguageExtensions.Areas.Reflection;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Implementation;
 using StructureMap;
 
@@ -15,6 +16,7 @@ namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
                     scanner.WithDefaultConventions();
                 });
 
+            Debug.WriteLine("Scanning LanguageExtensions");
             For<ITypeReflectionService>().Use<TypeReflectionService>();
         }
     }
