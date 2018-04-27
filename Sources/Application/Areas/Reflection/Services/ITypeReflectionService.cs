@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection
+namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services
 {
     public interface ITypeReflectionService
     {

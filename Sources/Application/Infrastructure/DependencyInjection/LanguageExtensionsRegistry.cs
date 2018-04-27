@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection;
-using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Implementation;
+using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
+using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
 using StructureMap;
 
 namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Implementation
+namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation
 {
     internal class TypeReflectionService : ITypeReflectionService
     {
