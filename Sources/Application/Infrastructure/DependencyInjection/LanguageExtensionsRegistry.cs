@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
-using Mmu.Mlh.LanguageExtensions.Areas.Reflection;
-using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
+using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services;
 using StructureMap;
 
 namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
@@ -15,9 +14,10 @@ namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
                 {
                     scanner.AssemblyContainingType<LanguageExtensionsRegistry>();
                     scanner.WithDefaultConventions();
+                    scanner.ExcludeType<IXmlElementBuilder>();
+                    scanner.ExcludeType<IXmlAttributeBuilder>();
                 });
 
-            Debug.WriteLine("Scanning LanguageExtensions");
             For<ITypeReflectionService>().Use<TypeReflectionService>();
         }
     }
