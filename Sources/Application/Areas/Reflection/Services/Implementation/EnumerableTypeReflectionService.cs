@@ -13,12 +13,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation
                 .Where(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                 .Select(t => t.GetGenericArguments()[0]).ToArray();
 
-            if (types.Any())
-            {
-                return types[0];
-            }
-
-            return typeof(object);
+            return types.Any() ? types[0] : typeof(object);
         }
     }
 }

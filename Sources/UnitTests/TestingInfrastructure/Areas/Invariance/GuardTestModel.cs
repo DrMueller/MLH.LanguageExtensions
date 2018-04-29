@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mmu.Mlh.LanguageExtensions.UnitTests.Infrastructure.Areas.Invariance
+namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingInfrastructure.Areas.Invariance
 {
     public class GuardTestModel
     {

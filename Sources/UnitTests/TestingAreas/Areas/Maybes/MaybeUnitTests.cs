@@ -3,7 +3,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Maybes;
 using Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation;
 using NUnit.Framework;
 
-namespace Mmu.Mlh.LanguageExtensions.UnitTests.Areas.Maybes
+namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
 {
     [TestFixture]
     public class MaybeUnitTests
