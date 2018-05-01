@@ -3,15 +3,18 @@ using Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes
 {
+    public static class Maybe
+    {
+        public static Maybe<T> CreateFromNullable<T>(T possiblyNull) =>
+            possiblyNull == null ? CreateNone<T>() : CreateSome(possiblyNull);
+
+        public static Maybe<T> CreateNone<T>() => new NoneMaybe<T>();
+
+        public static Maybe<T> CreateSome<T>(T value) => new SomeMaybe<T>(value);
+    }
+
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
-        public static Maybe<T> CreateFromNullable(T possiblyNull) =>
-            possiblyNull == null ? CreateNone() : CreateSome(possiblyNull);
-
-        public static Maybe<T> CreateNone() => new NoneMaybe<T>();
-
-        public static Maybe<T> CreateSome(T value) => new SomeMaybe<T>(value);
-
         public abstract bool Equals(Maybe<T> other);
 
         public abstract bool Equals(T other);

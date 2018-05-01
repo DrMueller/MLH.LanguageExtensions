@@ -12,7 +12,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
         public void CreatingNoneMaybe_CreatesNoneMaybe()
         {
             // Act
-            var actualNoneMaybe = Maybe<object>.CreateNone();
+            var actualNoneMaybe = Maybe.CreateNone<object>();
 
             // Assert
             Assert.That(actualNoneMaybe, Is.TypeOf<NoneMaybe<object>>());
@@ -22,7 +22,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
         public void CreatingSomeMaybe_CreatesSomeMaybe()
         {
             // Act
-            var actualSomeMaybe = Maybe<object>.CreateSome(new object());
+            var actualSomeMaybe = Maybe.CreateSome(new object());
 
             // Assert
             Assert.That(actualSomeMaybe, Is.TypeOf<SomeMaybe<object>>());
@@ -31,16 +31,14 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
         public void CreatingSomeMaybe_WithNullObject_ThrowsArgumentException()
         {
             // Act & Assert
-            Assert.That(
-                () => Maybe<object>.CreateSome(null),
-                Throws.TypeOf<ArgumentException>());
+            Assert.Throws<ArgumentException>(() => Maybe.CreateSome<object>(null));
         }
 
         [Test]
         public void EvaluatingMaybe_BeingNoneMaybe_EvaluatesToNoneAction()
         {
             // Arrange
-            var noneMaybe = Maybe<object>.CreateNone();
+            var noneMaybe = Maybe.CreateNone<object>();
             var noneMethodWasCalled = false;
             var someMethodWasCalled = false;
 
@@ -58,15 +56,15 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
             noneMaybe.Evaluate(SomeCallback, NoneCallback);
 
             // Assert
-            Assert.That(noneMethodWasCalled, Is.True);
-            Assert.That(someMethodWasCalled, Is.False);
+            Assert.IsTrue(noneMethodWasCalled);
+            Assert.IsFalse(someMethodWasCalled);
         }
 
         [Test]
         public void EvaluatingMaybe_BeingSomeMaybe_EvaluatesToSomeAction()
         {
             // Arrange
-            var someMaybe = Maybe<object>.CreateSome(new object());
+            var someMaybe = Maybe.CreateSome(new object());
             var noneMethodWasCalled = false;
             var someMethodWasCalled = false;
 
@@ -84,8 +82,8 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
             someMaybe.Evaluate(SomeCallback, NoneCallback);
 
             // Assert
-            Assert.That(noneMethodWasCalled, Is.False);
-            Assert.That(someMethodWasCalled, Is.True);
+            Assert.IsFalse(noneMethodWasCalled);
+            Assert.IsTrue(someMethodWasCalled);
         }
     }
 }
