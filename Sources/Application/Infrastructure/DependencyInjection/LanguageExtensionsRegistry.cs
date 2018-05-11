@@ -1,6 +1,6 @@
 ﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
-using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services;
+using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementation;
 using StructureMap;
 
 namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
@@ -14,8 +14,8 @@ namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
                 {
                     scanner.AssemblyContainingType<LanguageExtensionsRegistry>();
                     scanner.WithDefaultConventions();
-                    scanner.ExcludeType<IXmlElementBuilder>();
-                    scanner.ExcludeType<IXmlAttributeBuilder>();
+                    scanner.ExcludeType<XmlElementBuilder>();
+                    scanner.ExcludeType<XmlAttributeBuilder>();
                 });
 
             For<ITypeReflectionService>().Use<TypeReflectionService>();

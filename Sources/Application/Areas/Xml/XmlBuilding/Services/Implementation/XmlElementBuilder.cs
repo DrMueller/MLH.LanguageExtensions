@@ -11,7 +11,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
         private XElement _element;
         private object _value;
 
-        public XmlElementBuilder(XElement parent, IXmlElementBuilder parentElementBuilder, XName elementName)
+        internal XmlElementBuilder(XElement parent, IXmlElementBuilder parentElementBuilder, XName elementName)
         {
             _value = null;
             _parent = parent;
