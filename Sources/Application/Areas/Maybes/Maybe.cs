@@ -8,9 +8,9 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes
         public static Maybe<T> CreateFromNullable<T>(T possiblyNull) =>
             possiblyNull == null ? CreateNone<T>() : CreateSome(possiblyNull);
 
-        public static Maybe<T> CreateNone<T>() => new NoneMaybe<T>();
+        public static Maybe<T> CreateNone<T>() => new None<T>();
 
-        public static Maybe<T> CreateSome<T>(T value) => new SomeMaybe<T>(value);
+        public static Maybe<T> CreateSome<T>(T value) => new Some<T>(value);
     }
 
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>

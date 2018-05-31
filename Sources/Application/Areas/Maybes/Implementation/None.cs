@@ -2,13 +2,13 @@
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation
 {
-    public sealed class NoneMaybe<T> : Maybe<T>
+    public sealed class None<T> : Maybe<T>
     {
-        public override bool Equals(Maybe<T> other) => Equals(other as NoneMaybe<T>);
+        public override bool Equals(Maybe<T> other) => Equals(other as None<T>);
 
         public override bool Equals(T other) => false;
 
-        public bool Equals(NoneMaybe<T> other) => !ReferenceEquals(null, other);
+        public bool Equals(None<T> other) => !ReferenceEquals(null, other);
 
         public override TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone) => whenNone();
 
@@ -19,7 +19,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation
 
         public override int GetHashCode() => 0;
 
-        public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping) => new NoneMaybe<TNew>();
+        public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping) => new None<TNew>();
 
         public override T Reduce(Func<T> whenNone) => whenNone();
 

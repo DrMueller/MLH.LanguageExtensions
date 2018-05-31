@@ -9,13 +9,61 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
     public class MaybeUnitTests
     {
         [Test]
-        public void CreatingNoneMaybe_CreatesNoneMaybe()
+        public void CreatingNoneMaybe_CreatesNone()
         {
             // Act
             var actualNoneMaybe = Maybe.CreateNone<object>();
 
             // Assert
-            Assert.That(actualNoneMaybe, Is.TypeOf<NoneMaybe<object>>());
+            Assert.That(actualNoneMaybe, Is.TypeOf<None<object>>());
+        }
+
+        [Test]
+        public void ComparingMaybes_BothBeingNone_ReturnsTrue()
+        {
+            // Arrange
+            var none1 = Maybe.CreateNone<object>();
+            var none2 = Maybe.CreateNone<object>();
+
+            // Act
+            var areEqual = none1 == none2;
+
+            // Assert
+            Assert.IsTrue(areEqual);
+        }
+
+        [Test]
+        public void ComparingMaybes_OneBeingNoneOneBeingSome_ReturnsFalse()
+        {
+            // Arrange
+            var none = Maybe.CreateNone<object>();
+            var some = Maybe.CreateSome(new object());
+
+            // Act
+            var areEqual = none == some;
+
+            // Assert
+            Assert.IsFalse(areEqual);
+        }
+
+        [Test]
+        public void CreatingMaybeFromNullable_WithNull_CreatesNone()
+        {
+            // Act
+            var maybe = Maybe.CreateFromNullable<object>(null);
+
+            // Assert
+            Assert.That(maybe, Is.TypeOf<None<object>>());
+        }
+
+        [Test]
+        public void CreatingMaybeFromNullable_WithExistingObjects_CreatesSome()
+        {
+            // Act
+            var maybe = Maybe.CreateFromNullable(new object());
+
+            // Assert
+            Assert.That(maybe, Is.TypeOf<Some<object>>());
         }
 
         [Test]
@@ -25,7 +73,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
             var actualSomeMaybe = Maybe.CreateSome(new object());
 
             // Assert
-            Assert.That(actualSomeMaybe, Is.TypeOf<SomeMaybe<object>>());
+            Assert.That(actualSomeMaybe, Is.TypeOf<Some<object>>());
         }
 
         public void CreatingSomeMaybe_WithNullObject_ThrowsArgumentException()

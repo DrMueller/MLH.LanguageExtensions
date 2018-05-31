@@ -3,21 +3,21 @@ using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation
 {
-    public class SomeMaybe<T> : Maybe<T>
+    public class Some<T> : Maybe<T>
     {
         private readonly T _content;
 
-        public SomeMaybe(T content)
+        public Some(T content)
         {
             Guard.ObjectNotNull(() => content);
             _content = content;
         }
 
-        public override bool Equals(Maybe<T> other) => Equals(other as SomeMaybe<T>);
+        public override bool Equals(Maybe<T> other) => Equals(other as Some<T>);
 
         public override bool Equals(T other) => ContentEquals(other);
 
-        public bool Equals(SomeMaybe<T> other) => !ReferenceEquals(null, other) &&
+        public bool Equals(Some<T> other) => !ReferenceEquals(null, other) &&
             ContentEquals(other._content);
 
         public override TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone) => whenSome(_content);
@@ -29,7 +29,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation
 
         public override int GetHashCode() => _content.GetHashCode();
 
-        public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping) => new SomeMaybe<TNew>(mapping(_content));
+        public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping) => new Some<TNew>(mapping(_content));
 
         public override T Reduce(Func<T> whenNone) => _content;
 
