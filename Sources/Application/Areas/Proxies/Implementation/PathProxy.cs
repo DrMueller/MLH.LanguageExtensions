@@ -2,7 +2,7 @@
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Proxies.Implementation
 {
-    public class PathProxy : IPathProxy
+    internal class PathProxy : IPathProxy
     {
         public string ChangeExtension(string path, string extension) => Path.ChangeExtension(path, extension);
 

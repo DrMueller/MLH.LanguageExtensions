@@ -2,7 +2,7 @@
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Proxies.Implementation
 {
-    public class FileProxy : IFileProxy
+    internal class FileProxy : IFileProxy
     {
         public void Delete(string path)
         {

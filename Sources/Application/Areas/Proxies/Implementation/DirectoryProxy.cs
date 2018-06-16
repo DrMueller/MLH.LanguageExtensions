@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Proxies.Implementation
 {
-    public class DirectoryProxy : IDirectoryProxy
+    internal class DirectoryProxy : IDirectoryProxy
     {
         public void CreateDirectory(string path)
         {
