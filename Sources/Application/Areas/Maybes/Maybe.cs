@@ -5,12 +5,20 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes
 {
     public static class Maybe
     {
-        public static Maybe<T> CreateFromNullable<T>(T possiblyNull) =>
-            possiblyNull == null ? CreateNone<T>() : CreateSome(possiblyNull);
+        public static Maybe<T> CreateFromNullable<T>(T possiblyNull)
+        {
+            return possiblyNull == null ? CreateNone<T>() : CreateSome(possiblyNull);
+        }
 
-        public static Maybe<T> CreateNone<T>() => new None<T>();
+        public static Maybe<T> CreateNone<T>()
+        {
+            return new None<T>();
+        }
 
-        public static Maybe<T> CreateSome<T>(T value) => new Some<T>(value);
+        public static Maybe<T> CreateSome<T>(T value)
+        {
+            return new Some<T>(value);
+        }
     }
 
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
@@ -42,17 +50,56 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes
 
         public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
 
-        public static bool operator ==(Maybe<T> a, Maybe<T> b) => ReferenceEquals(null, a) && ReferenceEquals(null, b) ||
-            !ReferenceEquals(null, a) && a.Equals(b);
+        public static bool operator ==(Maybe<T> a, Maybe<T> b)
+        {
+            return ReferenceEquals(null, a) && ReferenceEquals(null, b) ||
+                !ReferenceEquals(null, a) && a.Equals(b);
+        }
 
-        public static bool operator ==(Maybe<T> a, T b) => !ReferenceEquals(null, a) && a.Equals(b);
+        public static bool operator ==(Maybe<T> a, T b)
+        {
+            return !ReferenceEquals(null, a) && a.Equals(b);
+        }
 
-        public static bool operator !=(Maybe<T> a, Maybe<T> b) => !(a == b);
+        public static implicit operator Maybe<T>(T value)
+        {
+            return ToMaybe(value);
+        }
 
-        public static bool operator !=(Maybe<T> a, T b) => !(a == b);
+        public static implicit operator T(Maybe<T> maybe)
+        {
+            return ToT(maybe);
+        }
+
+        public static bool operator !=(Maybe<T> a, Maybe<T> b)
+        {
+            return !(a == b);
+        }
+
+        public static bool operator !=(Maybe<T> a, T b)
+        {
+            return !(a == b);
+        }
 
         public abstract T Reduce(Func<T> whenNone);
 
         public abstract T Reduce(T whenNone);
+
+        public static Maybe<T> ToMaybe(T value)
+        {
+            if (value == null)
+            {
+                return new None<T>();
+            }
+
+            return new Some<T>(value);
+        }
+
+        public static T ToT(Maybe<T> maybe)
+        {
+            return maybe.Evaluate(
+                value => value,
+                () => default(T));
+        }
     }
 }

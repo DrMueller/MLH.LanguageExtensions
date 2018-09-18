@@ -9,13 +9,54 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
     public class MaybeUnitTests
     {
         [Test]
-        public void CreatingNoneMaybe_CreatesNone()
+        public void CastingNone_CastsToNull()
         {
-            // Act
+            // Arrange
             var actualNoneMaybe = Maybe.CreateNone<object>();
 
+            // Act
+            var actualObject = Maybe<object>.ToT(actualNoneMaybe);
+
             // Assert
-            Assert.That(actualNoneMaybe, Is.TypeOf<None<object>>());
+            Assert.IsNull(actualObject);
+        }
+
+        [Test]
+        public void CastingReferenceType_BeingNull_CastsToNone()
+        {
+            // Arrange
+            // Act
+            var actualMaybe = Maybe<object>.ToMaybe(null);
+
+            // Assert
+            Assert.IsInstanceOf<None<object>>(actualMaybe);
+        }
+
+        [Test]
+        public void CastingSome_CastsToValue()
+        {
+            // Arrange
+            const string Str = "Test";
+            var actualSome = Maybe.CreateSome(Str);
+
+            // Act
+            string actualString = actualSome;
+
+            // Assert
+            Assert.AreEqual(Str, actualString);
+        }
+
+        [Test]
+        public void CastingValue_CastsToSome()
+        {
+            // Arrange
+            const string Str = "Test";
+
+            // Act
+            Maybe<string> actualMaybe = Str;
+
+            // Assert
+            Assert.IsInstanceOf<Some<string>>(actualMaybe);
         }
 
         [Test]
@@ -47,6 +88,16 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
         }
 
         [Test]
+        public void CreatingMaybeFromNullable_WithExistingObjects_CreatesSome()
+        {
+            // Act
+            var maybe = Maybe.CreateFromNullable(new object());
+
+            // Assert
+            Assert.That(maybe, Is.TypeOf<Some<object>>());
+        }
+
+        [Test]
         public void CreatingMaybeFromNullable_WithNull_CreatesNone()
         {
             // Act
@@ -57,13 +108,13 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
         }
 
         [Test]
-        public void CreatingMaybeFromNullable_WithExistingObjects_CreatesSome()
+        public void CreatingNoneMaybe_CreatesNone()
         {
             // Act
-            var maybe = Maybe.CreateFromNullable(new object());
+            var actualNoneMaybe = Maybe.CreateNone<object>();
 
             // Assert
-            Assert.That(maybe, Is.TypeOf<Some<object>>());
+            Assert.That(actualNoneMaybe, Is.TypeOf<None<object>>());
         }
 
         [Test]
