@@ -87,11 +87,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes
 
         public static Maybe<T> ToMaybe(T value)
         {
-            if (value == null)
-            {
-                return new None<T>();
-            }
-
             return new Some<T>(value);
         }
 

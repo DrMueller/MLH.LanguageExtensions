@@ -22,17 +22,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
         }
 
         [Test]
-        public void CastingReferenceType_BeingNull_CastsToNone()
-        {
-            // Arrange
-            // Act
-            var actualMaybe = Maybe<object>.ToMaybe(null);
-
-            // Assert
-            Assert.IsInstanceOf<None<object>>(actualMaybe);
-        }
-
-        [Test]
         public void CastingSome_CastsToValue()
         {
             // Arrange
