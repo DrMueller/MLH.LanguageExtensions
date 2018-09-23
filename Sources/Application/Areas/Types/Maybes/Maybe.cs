@@ -1,7 +1,7 @@
 ﻿using System;
-using Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes
+namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 {
     public static class Maybe
     {

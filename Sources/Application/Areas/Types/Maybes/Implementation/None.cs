@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation
+namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 {
     public sealed class None<T> : Maybe<T>
     {

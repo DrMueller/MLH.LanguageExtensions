@@ -1,9 +1,9 @@
 ﻿using System;
-using Mmu.Mlh.LanguageExtensions.Areas.Maybes;
-using Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 using NUnit.Framework;
 
-namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Maybes
+namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
 {
     [TestFixture]
     public class MaybeUnitTests

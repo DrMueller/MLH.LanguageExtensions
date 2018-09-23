@@ -1,7 +1,7 @@
 ﻿using System;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.Maybes.Implementation
+namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 {
     public class Some<T> : Maybe<T>
     {
