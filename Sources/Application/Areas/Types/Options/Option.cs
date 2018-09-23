@@ -21,12 +21,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
         public abstract bool IsApplicable { get; }
         public abstract T OptionValue { get; }
 
-        public bool CheckIfEquals(T otherValue)
-        {
-            var result = Equals(otherValue, OptionValue);
-            return result;
-        }
-
         public abstract bool Equals(Option<T> other);
 
         public abstract bool Equals(T other);
