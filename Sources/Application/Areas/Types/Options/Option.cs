@@ -5,7 +5,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
 {
     public static class Option
     {
-        public static Option<T> CreateApplicible<T>(T optionValue)
+        public static Option<T> CreateApplicable<T>(T optionValue)
         {
             return new ApplicableOption<T>(optionValue);
         }
@@ -70,7 +70,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
 
         public static Option<TOpt> ToOption<TOpt>(TOpt optionValue)
         {
-            return Option.CreateApplicible(optionValue);
+            return Option.CreateApplicable(optionValue);
         }
     }
 }

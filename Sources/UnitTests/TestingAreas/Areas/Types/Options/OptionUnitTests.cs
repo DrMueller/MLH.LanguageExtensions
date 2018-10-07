@@ -12,7 +12,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
         {
             // Arrange
             var someObj = new object();
-            var applicable = Option.CreateApplicible(someObj);
+            var applicable = Option.CreateApplicable(someObj);
 
             // Act
             var areEqual = someObj == applicable;
@@ -26,7 +26,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
         {
             // Arrange
             const int SomeInt = 123;
-            var applicable = Option.CreateApplicible(SomeInt);
+            var applicable = Option.CreateApplicable(SomeInt);
 
             // Act
             var areEqual = SomeInt == applicable;
@@ -65,7 +65,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
         public void CreatingApplicable_CreatesApplicable()
         {
             // Act
-            var actualApplicable = Option.CreateApplicible<object>(null);
+            var actualApplicable = Option.CreateApplicable<object>(null);
 
             // Assert
             Assert.IsInstanceOf<ApplicableOption<object>>(actualApplicable);
