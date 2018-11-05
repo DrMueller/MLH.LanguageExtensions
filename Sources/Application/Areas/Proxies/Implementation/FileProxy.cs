@@ -9,9 +9,15 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Proxies.Implementation
             File.Delete(path);
         }
 
-        public bool Exists(string path) => File.Exists(path);
+        public bool Exists(string path)
+        {
+            return File.Exists(path);
+        }
 
-        public string[] ReadAllLines(string path) => File.ReadAllLines(path);
+        public string[] ReadAllLines(string path)
+        {
+            return File.ReadAllLines(path);
+        }
 
         public string ReadAllText(string path)
         {

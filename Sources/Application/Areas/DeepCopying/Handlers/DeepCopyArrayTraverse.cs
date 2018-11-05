@@ -5,6 +5,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Handlers
     internal class DeepCopyArrayTraverse
     {
         private readonly int[] _maxLengths;
+        public int[] Position { get; set; }
 
         public DeepCopyArrayTraverse(Array array)
         {
@@ -16,8 +17,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Handlers
 
             Position = new int[array.Rank];
         }
-
-        public int[] Position { get; set; }
 
         public bool Step()
         {

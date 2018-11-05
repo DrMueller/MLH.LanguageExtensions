@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Xml.Linq;
 using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Conditions;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementation
@@ -19,6 +20,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
             _element = new XElement(elementName);
         }
 
+        [SuppressMessage("Microsoft.Usage", "SA1119:StatementMustNotUseUnnecessaryParenthesis", Justification = "Actually needed")]
         public IXmlElementBuilder BuildElement()
         {
             if (_condition != null && !_condition.CheckIfSatisfiedBy(_value))

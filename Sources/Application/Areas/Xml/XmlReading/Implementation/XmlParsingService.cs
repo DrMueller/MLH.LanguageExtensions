@@ -6,7 +6,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
 {
     public class XmlParsingService : IXmlParsingService
     {
-        public T ParseSubElementValue<T>(XElement element, string subElementLocalName) where T : struct
+        public T ParseSubElementValue<T>(XElement element, string subElementLocalName)
+            where T : struct
         {
             return TryParsingSubElementValue<T>(element, subElementLocalName).Value;
         }
@@ -29,7 +30,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
             return TryGettingValueOfSubElement(element, subElementLocalName);
         }
 
-        public T? TryParsingSubElementValue<T>(XElement element, string subElementLocalName) where T : struct
+        public T? TryParsingSubElementValue<T>(XElement element, string subElementLocalName)
+            where T : struct
         {
             var stringValue = TryGettingValueOfSubElement(element, subElementLocalName);
 

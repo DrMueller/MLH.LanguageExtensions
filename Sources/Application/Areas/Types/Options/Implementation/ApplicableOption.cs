@@ -32,7 +32,17 @@
 
         private bool OptionValueEquals(T other)
         {
-            return ReferenceEquals(null, OptionValue) && ReferenceEquals(null, other) || !ReferenceEquals(null, OptionValue) && OptionValue.Equals(other);
+            if (ReferenceEquals(null, OptionValue) && ReferenceEquals(null, other))
+            {
+                return true;
+            }
+
+            if (!ReferenceEquals(null, OptionValue) && OptionValue.Equals(other))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

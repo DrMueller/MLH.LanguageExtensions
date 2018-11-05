@@ -4,5 +4,7 @@
 // Project-level suppressions either have no target or are given 
 // a specific target and scoped to a namespace, type, member, etc.
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Domain Term", Scope = "type", Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option`1")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Domain Term", Scope = "type", Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option")]
+using System.Diagnostics.CodeAnalysis;
+
+[assembly: SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Domain Term", Scope = "type", Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option`1")]
+[assembly: SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Domain Term", Scope = "type", Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option")]

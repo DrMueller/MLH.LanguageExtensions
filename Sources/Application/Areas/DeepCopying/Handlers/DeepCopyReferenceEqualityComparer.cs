@@ -4,8 +4,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Handlers
 {
     internal class DeepCopyReferenceEqualityComparer<T> : EqualityComparer<object>
     {
-        public override bool Equals(object x, object y) => ReferenceEquals(x, y);
+        public override bool Equals(object x, object y)
+        {
+            return ReferenceEquals(x, y);
+        }
 
-        public override int GetHashCode(object obj) => obj?.GetHashCode() ?? 0;
+        public override int GetHashCode(object obj)
+        {
+            return obj?.GetHashCode() ?? 0;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance.Handlers
@@ -13,6 +14,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance.Handlers
             return result;
         }
 
+        [SuppressMessage("Microsoft.Usage", "SA1119:StatementMustNotUseUnnecessaryParenthesis", Justification = "Actually needed")]
         private static MemberExpression GetMemberExpression<T>(Expression<Func<T>> propertyExpression)
         {
             if (!(propertyExpression.Body is MemberExpression result))
