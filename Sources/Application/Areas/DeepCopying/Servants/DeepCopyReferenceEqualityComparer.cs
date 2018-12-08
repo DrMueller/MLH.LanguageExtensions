@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Handlers
+namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
 {
     internal class DeepCopyReferenceEqualityComparer<T> : EqualityComparer<object>
     {

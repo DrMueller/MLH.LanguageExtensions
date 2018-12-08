@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Handlers;
+using Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Implementation
 {
-    public class DeepCopyService : IDeepCopyService
+    public static class DeepCopyService
     {
         private static readonly MethodInfo _cloneMethod = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        public T DeepCopy<T>(T source)
+        public static T DeepCopy<T>(T source)
         {
             var equalityComparer = new DeepCopyReferenceEqualityComparer<T>();
             var visitedObjectsDict = new Dictionary<object, object>(equalityComparer);
@@ -27,7 +27,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Implementation
             return type.IsValueType & type.IsPrimitive;
         }
 
-        private void CopyFields(object originalObject, IDictionary<object, object> visited, object cloneObject, IReflect typeToReflect, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.FlattenHierarchy, Func<FieldInfo, bool> filter = null)
+        private static void CopyFields(object originalObject, IDictionary<object, object> visited, object cloneObject, IReflect typeToReflect, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.FlattenHierarchy, Func<FieldInfo, bool> filter = null)
         {
             foreach (var fieldInfo in typeToReflect.GetFields(bindingFlags))
             {
@@ -47,7 +47,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Implementation
             }
         }
 
-        private object DeepCopy(object originalObject, IDictionary<object, object> visited)
+        private static object DeepCopy(object originalObject, IDictionary<object, object> visited)
         {
             if (originalObject == null)
             {
@@ -87,7 +87,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Implementation
             return cloneObject;
         }
 
-        private void RecursiveCopyBaseTypePrivateFields(object originalObject, IDictionary<object, object> visited, object cloneObject, Type typeToReflect)
+        private static void RecursiveCopyBaseTypePrivateFields(object originalObject, IDictionary<object, object> visited, object cloneObject, Type typeToReflect)
         {
             if (typeToReflect.BaseType == null)
             {
