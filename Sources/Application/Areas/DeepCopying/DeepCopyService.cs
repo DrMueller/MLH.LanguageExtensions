@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Implementation
+namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
 {
     public static class DeepCopyService
     {
