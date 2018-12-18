@@ -31,7 +31,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             Assert.IsTrue(actualUtcDateTime.HasValue);
             Assert.AreNotEqual(localDateTime, actualUtcDateTime.Value);
             Assert.AreNotEqual(localDateTime.Kind, actualUtcDateTime.Value.Kind);
-            Assert.AreEqual(localDateTime.ToUniversalTime(), actualUtcDateTime.Value);
+            Assert.AreEqual(localDateTime.ToUniversalTime().Ticks, actualUtcDateTime.Value.Ticks);
         }
 
         [Test]
