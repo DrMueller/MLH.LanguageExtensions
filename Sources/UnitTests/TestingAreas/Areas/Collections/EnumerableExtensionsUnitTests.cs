@@ -74,5 +74,77 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             // Assert
             Assert.IsFalse(actualContainsAny);
         }
+
+        public void HasSameElementsAs_OtherListHavingSameElements_ButOtherSorting_ReturnsTrue()
+        {
+            // Arrange
+            var list1 = new List<string>
+            {
+                "Test1",
+                "Test3",
+                "Test2"
+            };
+
+            var list2 = new List<string>
+            {
+                "Test1",
+                "Test2",
+                "Test3"
+            };
+
+            // Act
+            var actualResult = list1.HasSameElementsAs(list2);
+
+            // Assert
+            Assert.IsTrue(actualResult);
+        }
+
+        public void HasSameElementsAs_OtherListHavingMoreElements_ReturnsFalse()
+        {
+            // Arrange
+            var list1 = new List<string>
+            {
+                "Test1",
+                "Test3",
+                "Test2"
+            };
+
+            var list2 = new List<string>
+            {
+                "Test1",
+                "Test2",
+                "Test3",
+                "Test4"
+            };
+
+            // Act
+            var actualResult = list1.HasSameElementsAs(list2);
+
+            // Assert
+            Assert.IsFalse(actualResult);
+        }
+
+        public void HasSameElementsAs_OtherListHavingLessElements_ReturnsFalse()
+        {
+            // Arrange
+            var list1 = new List<string>
+            {
+                "Test1",
+                "Test3",
+                "Test2"
+            };
+
+            var list2 = new List<string>
+            {
+                "Test1",
+                "Test2"
+            };
+
+            // Act
+            var actualResult = list1.HasSameElementsAs(list2);
+
+            // Assert
+            Assert.IsFalse(actualResult);
+        }
     }
 }
