@@ -2,9 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance.Handlers
+namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance.Servants
 {
-    internal static class ExpressionHandler
+    internal static class ExpressionServant
     {
         internal static string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
         {

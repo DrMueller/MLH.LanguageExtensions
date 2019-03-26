@@ -21,7 +21,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         }
 
         [Test]
-        public void CheckCollectionNullOrEmpty_WithFilledCollection_DoesNotThrowArgumentException()
+        public void CheckCollectionNullOrEmpty_WithFilledCollection_DoesNotThrowException()
         {
             // Arrange
             var modelWithFilledCollection = new GuardTestModel(
@@ -60,7 +60,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         }
 
         [Test]
-        public void CheckingObjectNull_WithSetObject_DoesNotThrowArgumentException()
+        public void CheckingObjectNull_WithSetObject_DoesNotThrowException()
         {
             // Arrange
             var modelWithSetobject = new GuardTestModel("Test", new object(), new List<object>());
@@ -82,13 +82,35 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         }
 
         [Test]
-        public void CheckStringNullOrEmpty_WithSetString_DoesNotThrowArgumentException()
+        public void CheckStringNullOrEmpty_WithSetString_DoesNotThrowException()
         {
             // Arrange
             var modelWithSetString = new GuardTestModel("Test", new object(), new List<object>());
 
             // Act & Assert
             Assert.DoesNotThrow(() => Guard.StringNotNullOrEmpty(() => modelWithSetString.TestString));
+        }
+
+        [Test]
+        public void CheckThat_WithThatBeingFalse_DoesThrowArgumentException_WithPassedMessage()
+        {
+            // Arrange
+            var modelWithoutString = new GuardTestModel(string.Empty, null, new List<object>());
+            var passedMessage = Guid.NewGuid() + "String must not be null or empty.";
+
+            // Act & Assert
+            Assert.That(() => Guard.That(() => !string.IsNullOrEmpty(modelWithoutString.TestString), passedMessage), Throws.ArgumentException.And.Message.EqualTo(passedMessage));
+        }
+
+        [Test]
+        public void CheckThat_WithThatBeingTrue_DoesNotThrowException()
+        {
+            // Arrange
+            var modelWithoutString = new GuardTestModel(string.Empty, null, new List<object>());
+            var passedMessage = Guid.NewGuid() + "String must not be null or empty.";
+
+            // Act & Assert
+            Assert.DoesNotThrow(() => Guard.That(() => string.IsNullOrEmpty(modelWithoutString.TestString), passedMessage));
         }
     }
 }
