@@ -1,4 +1,5 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
+﻿using System.Diagnostics;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
 using NUnit.Framework;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.FunctionResults
@@ -23,6 +24,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Function
         {
             // Act
             var sut = FunctionResult.CreateFailure<T>();
+            Debug.WriteLine(value);
 
             // Assert
             Assert.AreEqual(default(T), sut.Value);
