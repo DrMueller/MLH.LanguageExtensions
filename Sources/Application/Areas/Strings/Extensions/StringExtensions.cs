@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.Strings
+namespace Mmu.Mlh.LanguageExtensions.Areas.Strings.Extensions
 {
     public static class StringExtensions
     {

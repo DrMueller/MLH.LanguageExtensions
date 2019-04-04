@@ -1,7 +1,7 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Strings;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.Strings.Extensions;
 using NUnit.Framework;
 
-namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings
+namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.Extensions
 {
     [TestFixture]
     public class StringExtensionsUnitTests

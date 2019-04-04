@@ -38,4 +38,8 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Strings\StringCutting\Services\" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,8 @@
 using Mmu.Mlh.LanguageExtensions.Areas.Proxies.Implementation;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
+using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services;
+using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implementation;
 using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementation;
 using StructureMap;
 
@@ -27,6 +29,9 @@ namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
             For<IProcessProxy>().Use<ProcessProxy>();
 
             For<ITypeReflectionService>().Use<TypeReflectionService>();
+
+            // StringCuttong
+            For<IStringCutterFactory>().Use<StringCutterFactory>().Singleton();
         }
     }
 }
