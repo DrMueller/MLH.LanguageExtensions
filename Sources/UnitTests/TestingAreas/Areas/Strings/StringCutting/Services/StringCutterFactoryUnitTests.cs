@@ -23,7 +23,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             Assert.Throws<ArgumentException>(
                 () =>
                 {
-                    _sut.CreateFor(string.Empty);
+                    _sut.CreateFor(str);
                 });
         }
 
