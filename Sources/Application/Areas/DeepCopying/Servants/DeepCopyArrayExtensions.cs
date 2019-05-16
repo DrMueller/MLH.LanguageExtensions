@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Handlers
+namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
 {
     internal static class DeepCopyArrayExtensions
     {

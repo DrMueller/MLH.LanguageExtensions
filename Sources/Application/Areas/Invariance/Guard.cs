@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Mmu.Mlh.LanguageExtensions.Areas.Invariance.Handlers;
+using Mmu.Mlh.LanguageExtensions.Areas.Invariance.Servants;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
 {
@@ -51,11 +51,25 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
             ThrowException(StringNullOrEmptyExceptionMessage, propertyExpression);
         }
 
+        public static void That(Func<bool> guardClause, string exceptionMessage)
+        {
+            if (guardClause())
+            {
+                return;
+            }
+
+            ThrowException(exceptionMessage);
+        }
+
         private static void ThrowException<T>(string exceptionMessageShell, Expression<Func<T>> propertyExpression)
         {
-            var propertyName = ExpressionHandler.GetPropertyName(propertyExpression);
+            var propertyName = ExpressionServant.GetPropertyName(propertyExpression);
             var exceptionMessage = string.Format(exceptionMessageShell, propertyName);
+            ThrowException(exceptionMessage);
+        }
 
+        private static void ThrowException(string exceptionMessage)
+        {
             throw new ArgumentException(exceptionMessage);
         }
     }

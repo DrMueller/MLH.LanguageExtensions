@@ -11,7 +11,10 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Proxies.Implementation
             Directory.CreateDirectory(path);
         }
 
-        public bool Exists(string path) => Directory.Exists(path);
+        public bool Exists(string path)
+        {
+            return Directory.Exists(path);
+        }
 
         public IReadOnlyCollection<string> GetFiles(string path)
         {

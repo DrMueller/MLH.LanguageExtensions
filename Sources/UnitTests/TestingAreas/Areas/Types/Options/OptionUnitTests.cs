@@ -29,7 +29,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
             var applicable = Option.CreateApplicable(SomeInt);
 
             // Act
-            var areEqual = SomeInt == applicable;
+            var areEqual = applicable == SomeInt;
 
             // Assert
             Assert.IsTrue(areEqual);

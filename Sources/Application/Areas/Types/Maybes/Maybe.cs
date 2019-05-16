@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
@@ -21,39 +22,22 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         }
     }
 
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "It makes sense to keep these Classes together")]
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
-        public abstract bool Equals(Maybe<T> other);
-
-        public abstract bool Equals(T other);
-
-        public override bool Equals(object obj)
+        public static bool operator ==(Maybe<T> a, Maybe<T> b)
         {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
+            if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
             {
                 return true;
             }
 
-            return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
-        }
+            if (!ReferenceEquals(null, a) && a.Equals(b))
+            {
+                return true;
+            }
 
-        public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
-
-        public abstract void Evaluate(Action<T> whenSome = null, Action whenNone = null);
-
-        public abstract override int GetHashCode();
-
-        public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
-
-        public static bool operator ==(Maybe<T> a, Maybe<T> b)
-        {
-            return ReferenceEquals(null, a) && ReferenceEquals(null, b) ||
-                !ReferenceEquals(null, a) && a.Equals(b);
+            return false;
         }
 
         public static bool operator ==(Maybe<T> a, T b)
@@ -81,10 +65,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
             return !(a == b);
         }
 
-        public abstract T Reduce(Func<T> whenNone);
-
-        public abstract T Reduce(T whenNone);
-
         public static Maybe<T> ToMaybe(T value)
         {
             return new Some<T>(value);
@@ -96,5 +76,36 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
                 value => value,
                 () => default(T));
         }
+
+        public abstract bool Equals(Maybe<T> other);
+
+        public abstract bool Equals(T other);
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
+        }
+
+        public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
+
+        public abstract void Evaluate(Action<T> whenSome = null, Action whenNone = null);
+
+        public abstract override int GetHashCode();
+
+        public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
+
+        public abstract T Reduce(Func<T> whenNone);
+
+        public abstract T Reduce(T whenNone);
     }
 }
