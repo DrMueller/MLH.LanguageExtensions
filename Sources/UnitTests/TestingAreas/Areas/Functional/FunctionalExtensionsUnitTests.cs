@@ -105,11 +105,5 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
             // Assert
             Assert.AreEqual(number, actualNumber);
         }
-
-        private static Func<T1, Func<T2, Func<T3, TResult>>> Curry<T1, T2, T3, TResult>
-            (Func<T1, T2, T3, TResult> function)
-        {
-            return a => b => c => function(a, b, c);
-        }
     }
 }
