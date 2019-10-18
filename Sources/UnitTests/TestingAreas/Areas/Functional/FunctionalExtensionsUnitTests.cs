@@ -8,6 +8,36 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
     public class FunctionalExtensionsUnitTests
     {
         [Test]
+        public void ApplyingOnePartial_AppliesPartial()
+        {
+            // Arrange
+            Func<int, int> addMethod = (a) => a + 1;
+            const int ExpectedAddResult = 2;
+
+            // Act
+            var actualPartiallyApplied = addMethod.ApplyPartial(1);
+
+            // Assert
+            var actualResult = actualPartiallyApplied();
+            Assert.AreEqual(ExpectedAddResult, actualResult);
+        }
+
+        [Test]
+        public void ApplyingTwoParamsPartial_AppliesPartial()
+        {
+            // Arrange
+            Func<int, int, int> addMethod = (a, b) => a + b;
+            const int ExpectedAddResult = 4;
+
+            // Act
+            var actualPartiallyApplied = addMethod.ApplyPartial(1);
+
+            // Assert
+            var actualResult = actualPartiallyApplied(3);
+            Assert.AreEqual(ExpectedAddResult, actualResult);
+        }
+
+        [Test]
         public void Mapping_CallbackBeingNull_Throws()
         {
             // Arrange
@@ -74,6 +104,12 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
 
             // Assert
             Assert.AreEqual(number, actualNumber);
+        }
+
+        private static Func<T1, Func<T2, Func<T3, TResult>>> Curry<T1, T2, T3, TResult>
+            (Func<T1, T2, T3, TResult> function)
+        {
+            return a => b => c => function(a, b, c);
         }
     }
 }
