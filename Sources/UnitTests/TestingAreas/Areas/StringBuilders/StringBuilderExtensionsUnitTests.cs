@@ -70,5 +70,28 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
             var actualString = sb.ToString();
             Assert.AreEqual(expectedString, actualString);
         }
+
+        [Test]
+        public void AppendingWithSeperator_AppendsSeperator_ExceptLast()
+        {
+            // Arrange
+            var sb = new StringBuilder();
+            const string seperator = ",";
+            var collectionToAdd = new string[]
+            {
+                "test1",
+                "test2",
+                "test3"
+            };
+
+            const string expectedString = "test1,test2,test3";
+
+            // Act
+            sb.AppendWithSeperatorExceptLast(collectionToAdd, seperator);
+
+            // Assert
+            var actualString = sb.ToString();
+            Assert.AreEqual(expectedString, actualString);
+        }
     }
 }

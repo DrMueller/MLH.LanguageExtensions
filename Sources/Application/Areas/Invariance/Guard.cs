@@ -8,10 +8,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
 {
     public static class Guard
     {
-        private const string CollectionNullorEmptyMessage = "Collection {0} must not be null or empty.";
-        private const string NullObjectExceptionMessage = "Object {0} must not be null.";
-        private const string StringNullOrEmptyExceptionMessage = "String {0} must not be null or empty.";
-
         public static void CollectionNotNullOrEmpty<T>(Expression<Func<IEnumerable<T>>> propertyExpression)
         {
             var func = propertyExpression.Compile();
@@ -60,6 +56,10 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
 
             ThrowException(exceptionMessage);
         }
+
+        private const string CollectionNullorEmptyMessage = "Collection {0} must not be null or empty.";
+        private const string NullObjectExceptionMessage = "Object {0} must not be null.";
+        private const string StringNullOrEmptyExceptionMessage = "String {0} must not be null or empty.";
 
         private static void ThrowException<T>(string exceptionMessageShell, Expression<Func<T>> propertyExpression)
         {
