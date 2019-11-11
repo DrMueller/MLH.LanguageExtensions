@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance.Servants;
@@ -57,6 +58,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
             ThrowException(exceptionMessage);
         }
 
+        [SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "Actual IDE Bug, default maps to NULL")]
         public static void ValueNotDefault<T>(Expression<Func<T>> propertyExpression)
             where T : struct
         {
