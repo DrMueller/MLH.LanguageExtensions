@@ -16,8 +16,27 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
             var modelWithEmptyCollection = new GuardTestModel("Test", new object(), new List<object>());
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(
-                () => Guard.CollectionNotNullOrEmpty(() => modelWithEmptyCollection.TestCollection));
+            Assert.Throws<ArgumentException>(() => Guard.CollectionNotNullOrEmpty(() => modelWithEmptyCollection.TestCollection));
+        }
+
+        [TestCase(default(int))]
+        [TestCase(default(long))]
+        [TestCase(default(short))]
+        public void ValueNotDefault_WithValueDefault_ThrowsArgumentException<T>(T actualDefault)
+            where T : struct
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => Guard.ValueNotDefault(() => actualDefault));
+        }
+
+        [Test]
+        public void ValueNotDefault_WithValueNotDefault_DoesNotThrowException()
+        {
+            // Arrange
+            var actualGuid = Guid.NewGuid();
+
+            // Act & Assert
+            Assert.DoesNotThrow(() => Guard.ValueNotDefault(() => actualGuid));
         }
 
         [Test]

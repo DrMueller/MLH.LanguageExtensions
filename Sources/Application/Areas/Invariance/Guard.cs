@@ -57,9 +57,24 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
             ThrowException(exceptionMessage);
         }
 
+        public static void ValueNotDefault<T>(Expression<Func<T>> propertyExpression)
+            where T : struct
+        {
+            var func = propertyExpression.Compile();
+            var funcValue = func();
+
+            if (!EqualityComparer<T>.Default.Equals(funcValue, default(T)))
+            {
+                return;
+            }
+
+            ThrowException(ValueNullOrEmptyExceptionMessage, propertyExpression);
+        }
+
         private const string CollectionNullorEmptyMessage = "Collection {0} must not be null or empty.";
         private const string NullObjectExceptionMessage = "Object {0} must not be null.";
         private const string StringNullOrEmptyExceptionMessage = "String {0} must not be null or empty.";
+        private const string ValueNullOrEmptyExceptionMessage = "Value {0} must not be null or empty.";
 
         private static void ThrowException<T>(string exceptionMessageShell, Expression<Func<T>> propertyExpression)
         {
