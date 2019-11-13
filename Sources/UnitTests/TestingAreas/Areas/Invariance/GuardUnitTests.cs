@@ -22,7 +22,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         [TestCase(default(int))]
         [TestCase(default(long))]
         [TestCase(default(short))]
-        public void ValueNotDefault_WithValueDefault_ThrowsArgumentException<T>(T actualDefault)
+        public void CheckingValueNotDefault_WithValueDefault_ThrowsArgumentException<T>(T actualDefault)
             where T : struct
         {
             // Act & Assert
@@ -30,7 +30,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         }
 
         [Test]
-        public void ValueNotDefault_WithValueNotDefault_DoesNotThrowException()
+        public void CheckingValueNotDefault_WithValueNotDefault_DoesNotThrowException()
         {
             // Arrange
             var actualGuid = Guid.NewGuid();

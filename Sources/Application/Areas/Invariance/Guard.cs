@@ -58,14 +58,13 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
             ThrowException(exceptionMessage);
         }
 
-        [SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "Actual IDE Bug, default maps to NULL")]
         public static void ValueNotDefault<T>(Expression<Func<T>> propertyExpression)
             where T : struct
         {
             var func = propertyExpression.Compile();
             var funcValue = func();
 
-            if (!EqualityComparer<T>.Default.Equals(funcValue, default(T)))
+            if (!EqualityComparer<T>.Default.Equals(funcValue, default))
             {
                 return;
             }
