@@ -26,7 +26,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
         public bool Equals(Some<T> other)
         {
             return !ReferenceEquals(null, other) &&
-                ContentEquals(other._content);
+                   ContentEquals(other._content);
         }
 
         public override TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone)

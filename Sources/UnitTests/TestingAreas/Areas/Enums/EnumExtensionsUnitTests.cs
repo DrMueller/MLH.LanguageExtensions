@@ -67,7 +67,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Enums
         public void TryingTopParseInt_IntNotBeingInEnum_ReturnsFalse()
         {
             // Act
-            var actualParsingResult = EnumExtensions.TryParse<TestEnum>(4, out var _);
+            var actualParsingResult = EnumExtensions.TryParse<TestEnum>(4, out _);
 
             // Assert
             Assert.IsFalse(actualParsingResult);
@@ -77,7 +77,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Enums
         public void TryingTopParseInt_TypeNotBeingEnum_ThrowsArgumentException()
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => EnumExtensions.TryParse<long>(5, out var _));
+            Assert.Throws<ArgumentException>(() => EnumExtensions.TryParse<long>(5, out _));
         }
     }
 }

@@ -18,7 +18,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.EithersByZoranHorvat
     }
 
     // Implementaion by Zoran Horvat. See: https://app.pluralsight.com/player?course=advanced-defensive-programming-techniques&author=zoran-horvat&name=advanced-defensive-programming-techniques-m9&clip=7&mode=live
-    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "It makes sense to keep these Classes together")]
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification =
+        "It makes sense to keep these Classes together")]
     public abstract class Either<TLeft, TRight>
     {
         public abstract Either<TNewLeft, TRight>

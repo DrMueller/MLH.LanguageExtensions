@@ -6,7 +6,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults
     {
         public static FunctionResult<T> CreateFailure<T>()
         {
-            return new FunctionResult<T>(false, default(T));
+            return new FunctionResult<T>(false, default);
         }
 
         public static FunctionResult<T> CreateSuccess<T>(T value)
@@ -15,7 +15,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults
         }
     }
 
-    [SuppressMessage("Microsoft.Usage", "SA1402:FileMayOnlyContainASingleType", Justification = "It makes sense to keep these Classes together")]
+    [SuppressMessage("Microsoft.Usage", "SA1402:FileMayOnlyContainASingleType", Justification =
+        "It makes sense to keep these Classes together")]
     public class FunctionResult<T>
     {
         public bool IsSuccess { get; }

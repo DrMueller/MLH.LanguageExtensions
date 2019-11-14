@@ -14,7 +14,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Functional
         public static Func<TParam2, TResult> ApplyPartial<TParam1, TParam2, TResult>(
             this Func<TParam1, TParam2, TResult> func, TParam1 parameter)
         {
-            return (param2) => func(parameter, param2);
+            return param2 => func(parameter, param2);
         }
 
         public static TResult Map<TSource, TResult>(this TSource source, Func<TSource, TResult> mappingCallback)

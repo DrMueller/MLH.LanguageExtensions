@@ -8,6 +8,12 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
     [TestFixture]
     public class MaybeUnitTests
     {
+        public void CreatingSomeMaybe_WithNullObject_ThrowsArgumentException()
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => Maybe.CreateSome<object>(null));
+        }
+
         [Test]
         public void CastingNone_CastsToNull()
         {
@@ -114,12 +120,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
 
             // Assert
             Assert.That(actualSomeMaybe, Is.TypeOf<Some<object>>());
-        }
-
-        public void CreatingSomeMaybe_WithNullObject_ThrowsArgumentException()
-        {
-            // Act & Assert
-            Assert.Throws<ArgumentException>(() => Maybe.CreateSome<object>(null));
         }
 
         [Test]

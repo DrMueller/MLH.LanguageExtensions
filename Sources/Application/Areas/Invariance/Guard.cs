@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance.Servants;
@@ -9,6 +8,11 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
 {
     public static class Guard
     {
+        private const string CollectionNullOrEmptyMessage = "Collection {0} must not be null or empty.";
+        private const string NullObjectExceptionMessage = "Object {0} must not be null.";
+        private const string StringNullOrEmptyExceptionMessage = "String {0} must not be null or empty.";
+        private const string ValueNullOrEmptyExceptionMessage = "Value {0} must not be null or empty.";
+
         public static void CollectionNotNullOrEmpty<T>(Expression<Func<IEnumerable<T>>> propertyExpression)
         {
             var func = propertyExpression.Compile();
@@ -19,7 +23,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
                 return;
             }
 
-            ThrowException(CollectionNullorEmptyMessage, propertyExpression);
+            ThrowException(CollectionNullOrEmptyMessage, propertyExpression);
         }
 
         public static void ObjectNotNull(Expression<Func<object>> propertyExpression)
@@ -71,11 +75,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Invariance
 
             ThrowException(ValueNullOrEmptyExceptionMessage, propertyExpression);
         }
-
-        private const string CollectionNullorEmptyMessage = "Collection {0} must not be null or empty.";
-        private const string NullObjectExceptionMessage = "Object {0} must not be null.";
-        private const string StringNullOrEmptyExceptionMessage = "String {0} must not be null or empty.";
-        private const string ValueNullOrEmptyExceptionMessage = "Value {0} must not be null or empty.";
 
         private static void ThrowException<T>(string exceptionMessageShell, Expression<Func<T>> propertyExpression)
         {

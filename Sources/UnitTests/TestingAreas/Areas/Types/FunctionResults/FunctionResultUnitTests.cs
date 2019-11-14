@@ -7,16 +7,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Function
     [TestFixture]
     public class FunctionResultUnitTests
     {
-        [Test]
-        public void Creating_BeingFailure_MapsToSuccessFalse()
-        {
-            // Act
-            var sut = FunctionResult.CreateFailure<object>();
-
-            // Assert
-            Assert.IsFalse(sut.IsSuccess);
-        }
-
         [TestCase(42)]
         [TestCase("Hello Test")]
         [TestCase(double.Epsilon)]
@@ -30,16 +20,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Function
             Assert.AreEqual(default(T), sut.Value);
         }
 
-        [Test]
-        public void Creating_BeingSuccess_MapsToSuccessTrue()
-        {
-            // Act
-            var sut = FunctionResult.CreateSuccess(new object());
-
-            // Assert
-            Assert.IsTrue(sut.IsSuccess);
-        }
-
         [TestCase(42)]
         [TestCase("Hello Test")]
         [TestCase(double.Epsilon)]
@@ -50,6 +30,26 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Function
 
             // Assert
             Assert.AreEqual(value, sut.Value);
+        }
+
+        [Test]
+        public void Creating_BeingFailure_MapsToSuccessFalse()
+        {
+            // Act
+            var sut = FunctionResult.CreateFailure<object>();
+
+            // Assert
+            Assert.IsFalse(sut.IsSuccess);
+        }
+
+        [Test]
+        public void Creating_BeingSuccess_MapsToSuccessTrue()
+        {
+            // Act
+            var sut = FunctionResult.CreateSuccess(new object());
+
+            // Assert
+            Assert.IsTrue(sut.IsSuccess);
         }
     }
 }

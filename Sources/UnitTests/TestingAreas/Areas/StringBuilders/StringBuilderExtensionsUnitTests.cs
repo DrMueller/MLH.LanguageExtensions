@@ -77,7 +77,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
             // Arrange
             var sb = new StringBuilder();
             const string seperator = ",";
-            var collectionToAdd = new string[]
+            var collectionToAdd = new[]
             {
                 "test1",
                 "test2",

@@ -6,10 +6,10 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
 {
     public class XmlElementBuilder : IXmlElementBuilder
     {
+        private readonly XElement _element;
         private readonly XElement _parent;
         private readonly IXmlElementBuilder _parentElementBuilder;
         private XmlBuildingCondition _condition;
-        private XElement _element;
         private object _value;
 
         internal XmlElementBuilder(XElement parent, IXmlElementBuilder parentElementBuilder, XName elementName)
@@ -20,7 +20,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
             _element = new XElement(elementName);
         }
 
-        [SuppressMessage("Microsoft.Usage", "SA1119:StatementMustNotUseUnnecessaryParenthesis", Justification = "Actually needed")]
+        [SuppressMessage("Microsoft.Usage", "SA1119:StatementMustNotUseUnnecessaryParenthesis", Justification =
+            "Actually needed")]
         public IXmlElementBuilder BuildElement()
         {
             if (_condition != null && !_condition.CheckIfSatisfiedBy(_value))

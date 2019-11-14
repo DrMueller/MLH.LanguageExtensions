@@ -8,6 +8,12 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
     [TestFixture]
     public class EnumerableTypeReflectionServiceUnitTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            _sut = new EnumerableTypeReflectionService();
+        }
+
         private EnumerableTypeReflectionService _sut;
 
         [Test]
@@ -34,12 +40,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
 
             // Assert
             Assert.AreEqual(actualGenericType, typeof(object));
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            _sut = new EnumerableTypeReflectionService();
         }
     }
 }

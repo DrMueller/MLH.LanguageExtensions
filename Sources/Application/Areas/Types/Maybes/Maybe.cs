@@ -22,9 +22,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         }
     }
 
-    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "It makes sense to keep these Classes together")]
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification =
+        "It makes sense to keep these Classes together")]
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
+        public abstract bool Equals(Maybe<T> other);
+
+        public abstract bool Equals(T other);
+
         public static bool operator ==(Maybe<T> a, Maybe<T> b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
@@ -74,12 +79,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         {
             return maybe.Evaluate(
                 value => value,
-                () => default(T));
+                () => default);
         }
-
-        public abstract bool Equals(Maybe<T> other);
-
-        public abstract bool Equals(T other);
 
         public override bool Equals(object obj)
         {

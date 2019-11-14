@@ -11,7 +11,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
         public void ApplyingOnePartial_AppliesPartial()
         {
             // Arrange
-            Func<int, int> addMethod = (a) => a + 1;
+            Func<int, int> addMethod = a => a + 1;
             const int ExpectedAddResult = 2;
 
             // Act
@@ -73,10 +73,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
 
             // Act & Assert
             Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    number.Tee(null);
-                });
+                () => { number.Tee(null); });
         }
 
         [Test]

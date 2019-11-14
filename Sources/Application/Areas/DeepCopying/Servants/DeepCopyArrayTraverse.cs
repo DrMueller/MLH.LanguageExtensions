@@ -5,6 +5,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
     internal class DeepCopyArrayTraverse
     {
         private readonly int[] _maxLengths;
+
         public int[] Position { get; set; }
 
         public DeepCopyArrayTraverse(Array array)
