@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmu.Mlh.LanguageExtensions", "Sources\Application\Mmu.Mlh.LanguageExtensions.csproj", "{925B1580-6BAE-4356-B220-0F988E21A1A5}"
 EndProject
@@ -12,7 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Configurations", ".Configu
 		.gitignore = .gitignore
 		CA_ProductionCode.ruleset = CA_ProductionCode.ruleset
 		CA_UnitTests.ruleset = CA_UnitTests.ruleset
-		Settings.StyleCop = Settings.StyleCop
 	EndProjectSection
 EndProject
 Global
