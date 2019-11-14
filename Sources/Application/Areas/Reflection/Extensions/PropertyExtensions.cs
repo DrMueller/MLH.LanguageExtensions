@@ -21,7 +21,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions
         }
 
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "owner", Justification = "Extension Method: Implicitly takes type of owner!")]
-        // ReSharper disable once UnusedParameter.Global
         public static PropertyInfo GetPropertyInfo<T, TField>(this T owner, Expression<Func<T, TField>> expression)
         {
             return GetPropertyInfo(expression);
@@ -51,7 +50,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions
         }
 
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "owner", Justification = "Extension Method: Implicitly takes type of owner!")]
-        // ReSharper disable once UnusedParameter.Global
         public static string GetPropertyName<T, TField>(this T owner, Expression<Func<T, TField>> expression)
         {
             return GetPropertyName(expression);
