@@ -24,10 +24,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
         public abstract bool IsApplicable { get; }
         public abstract T OptionValue { get; }
 
-        public abstract bool Equals(Option<T> other);
-
-        public abstract bool Equals(T other);
-
         public static bool operator ==(Option<T> a, Option<T> b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
@@ -67,6 +63,10 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
         {
             return Option.CreateApplicable(optionValue);
         }
+
+        public abstract bool Equals(Option<T> other);
+
+        public abstract bool Equals(T other);
 
         public override bool Equals(object obj)
         {

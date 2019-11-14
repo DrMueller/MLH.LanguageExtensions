@@ -9,16 +9,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
     [TestFixture]
     public class GuardUnitTests
     {
-        [Test]
-        public void CheckCollectionNullOrEmpty_WithEmptyCollection_ThrowsArgumentException()
-        {
-            // Arrange
-            var modelWithEmptyCollection = new GuardTestModel("Test", new object(), new List<object>());
-
-            // Act & Assert
-            Assert.Throws<ArgumentException>(() => Guard.CollectionNotNullOrEmpty(() => modelWithEmptyCollection.TestCollection));
-        }
-
         [TestCase(default(int))]
         [TestCase(default(long))]
         [TestCase(default(short))]
@@ -29,14 +19,26 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
             Assert.Throws<ArgumentException>(() => Guard.ValueNotDefault(() => actualDefault));
         }
 
-        [Test]
-        public void CheckingValueNotDefault_WithValueNotDefault_DoesNotThrowException()
+        [TestCase(null)]
+        [TestCase("")]
+        public void CheckingStringNullOrEmpty_WithNullOrEmptyString_ThrowsArgumentException(string actual)
         {
             // Arrange
-            var actualGuid = Guid.NewGuid();
+            var modelWithNullString = new GuardTestModel(actual, new object(), new List<object>());
 
             // Act & Assert
-            Assert.DoesNotThrow(() => Guard.ValueNotDefault(() => actualGuid));
+            Assert.Throws<ArgumentException>(
+                () => Guard.StringNotNullOrEmpty(() => modelWithNullString.TestString));
+        }
+
+        [Test]
+        public void CheckCollectionNullOrEmpty_WithEmptyCollection_ThrowsArgumentException()
+        {
+            // Arrange
+            var modelWithEmptyCollection = new GuardTestModel("Test", new object(), new List<object>());
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => Guard.CollectionNotNullOrEmpty(() => modelWithEmptyCollection.TestCollection));
         }
 
         [Test]
@@ -88,16 +90,14 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
             Assert.DoesNotThrow(() => Guard.ObjectNotNull(() => modelWithSetobject.TestObject));
         }
 
-        [TestCase(null)]
-        [TestCase("")]
-        public void CheckingStringNullOrEmpty_WithNullOrEmptyString_ThrowsArgumentException(string actual)
+        [Test]
+        public void CheckingValueNotDefault_WithValueNotDefault_DoesNotThrowException()
         {
             // Arrange
-            var modelWithNullString = new GuardTestModel(actual, new object(), new List<object>());
+            var actualGuid = Guid.NewGuid();
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(
-                () => Guard.StringNotNullOrEmpty(() => modelWithNullString.TestString));
+            Assert.DoesNotThrow(() => Guard.ValueNotDefault(() => actualGuid));
         }
 
         [Test]

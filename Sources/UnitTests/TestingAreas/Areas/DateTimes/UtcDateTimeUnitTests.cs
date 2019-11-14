@@ -106,6 +106,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
 
             try
             {
+                // ReSharper disable once UnusedVariable
                 var value = emptyUtcDateTime.Value;
             }
             catch (Exception ex)

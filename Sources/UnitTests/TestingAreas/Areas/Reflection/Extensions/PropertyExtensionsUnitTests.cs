@@ -1,5 +1,4 @@
-﻿using System;
-using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions;
 using Mmu.Mlh.LanguageExtensions.UnitTests.TestingInfrastructure.Areas.Reflection.TestModels;
 using NUnit.Framework;
 
@@ -12,7 +11,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ext
         public void GetPropertyInfo_GetsPropertyInfo()
         {
             // Arrange
-            var individual = new Individual("Matthias", "Müller", new DateTime(1986, 12, 29));
+            var individual = new Individual("Matthias");
             var expectedPropertyInfo = typeof(Individual).GetProperty("FirstName");
 
             // Act

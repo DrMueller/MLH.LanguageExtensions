@@ -1,18 +1,12 @@
-﻿using System;
-
-namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingInfrastructure.Areas.Reflection.TestModels
+﻿namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingInfrastructure.Areas.Reflection.TestModels
 {
     public class Individual
     {
-        public DateTime Birthdate { get; }
-        public string FirstName { get; set; }
-        public string LastName { get; }
+        public string FirstName { get; }
 
-        public Individual(string firstName, string lastName, DateTime birthdate)
+        public Individual(string firstName)
         {
             FirstName = firstName;
-            LastName = lastName;
-            Birthdate = birthdate;
         }
     }
 }

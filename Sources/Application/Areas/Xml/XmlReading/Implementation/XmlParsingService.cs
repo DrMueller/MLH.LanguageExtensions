@@ -9,7 +9,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
         public T ParseSubElementValue<T>(XElement element, string subElementLocalName)
             where T : struct
         {
-            return TryParsingSubElementValue<T>(element, subElementLocalName).Value;
+            var subElement = TryParsingSubElementValue<T>(element, subElementLocalName);
+            return subElement ?? default;
         }
 
         public T TryParsingSubElementEnumValue<T>(XElement element, string subElementLocalName, T defaultValue)

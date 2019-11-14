@@ -26,10 +26,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         "It makes sense to keep these Classes together")]
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
-        public abstract bool Equals(Maybe<T> other);
-
-        public abstract bool Equals(T other);
-
         public static bool operator ==(Maybe<T> a, Maybe<T> b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
@@ -81,6 +77,10 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
                 value => value,
                 () => default);
         }
+
+        public abstract bool Equals(Maybe<T> other);
+
+        public abstract bool Equals(T other);
 
         public override bool Equals(object obj)
         {

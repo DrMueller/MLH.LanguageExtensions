@@ -47,6 +47,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
             Assert.Throws<ArgumentException>(
                 () =>
                 {
+                    // ReSharper disable once UnusedVariable
                     var actualString = number.Map<int, string>(null);
                 });
         }

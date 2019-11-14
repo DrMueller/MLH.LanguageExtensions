@@ -6,7 +6,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
     {
         private readonly int[] _maxLengths;
 
-        public int[] Position { get; set; }
+        public int[] Position { get; }
 
         public DeepCopyArrayTraverse(Array array)
         {

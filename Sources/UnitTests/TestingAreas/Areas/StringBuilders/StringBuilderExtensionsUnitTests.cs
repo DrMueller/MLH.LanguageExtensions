@@ -76,7 +76,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
         {
             // Arrange
             var sb = new StringBuilder();
-            const string seperator = ",";
+            const string Seperator = ",";
             var collectionToAdd = new[]
             {
                 "test1",
@@ -84,14 +84,14 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
                 "test3"
             };
 
-            const string expectedString = "test1,test2,test3";
+            const string ExpectedString = "test1,test2,test3";
 
             // Act
-            sb.AppendWithSeperatorExceptLast(collectionToAdd, seperator);
+            sb.AppendWithSeperatorExceptLast(collectionToAdd, Seperator);
 
             // Assert
             var actualString = sb.ToString();
-            Assert.AreEqual(expectedString, actualString);
+            Assert.AreEqual(ExpectedString, actualString);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
 
         public static T DeepCopy<T>(T source)
         {
-            var equalityComparer = new DeepCopyReferenceEqualityComparer<T>();
+            var equalityComparer = new DeepCopyReferenceEqualityComparer();
             var visitedObjectsDict = new Dictionary<object, object>(equalityComparer);
             var copy = DeepCopy(source, visitedObjectsDict);
             return (T)copy;
