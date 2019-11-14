@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
-// ReSharper disable UnusedParameter.Global
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions
 {
