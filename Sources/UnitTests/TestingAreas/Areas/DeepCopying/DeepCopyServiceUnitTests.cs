@@ -7,7 +7,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
     [TestFixture]
     public class DeepCopyServiceUnitTests
     {
-        [SetUp]
+        [Test]
         public void RecursivelyCopyingReferenceTypes_CreatesNewReferences()
         {
             // Arrange
@@ -23,7 +23,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             Assert.IsFalse(ReferenceEquals(actualCopy.SubModel.SubModel, model.SubModel.SubModel));
         }
 
-        [SetUp]
+        [Test]
         public void CopyingReferenceType_CreatesNewReference()
         {
             // Arrange
@@ -36,7 +36,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             Assert.IsFalse(ReferenceEquals(model, actualCopy));
         }
 
-        [SetUp]
+        [Test]
         public void CopyingSubReferenceTypes_KeepsValues()
         {
             // Arrange
@@ -56,7 +56,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             Assert.AreEqual(model.SubModel.SubModel.Age, actualCopy.SubModel.SubModel.Age);
         }
 
-        [SetUp]
+        [Test]
         public void CopyingValueType_KeepsValue()
         {
             // Arrange
