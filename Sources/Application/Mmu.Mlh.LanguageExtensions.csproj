@@ -9,9 +9,9 @@
     <Product>MyLittleHelpers.LanguageExtensions</Product>
     <Authors>DrMueller</Authors>
     <Description>DrMuellers little Language Extensions</Description>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/DrMueller/MLH.LanguageExtensions/master/Sources/Application/Infrastructure/Assets/M.png</PackageIconUrl>
-    <RepositoryUrl></RepositoryUrl>
+    <PackageProjectUrl>https://github.com/DrMueller/MLH.LanguageExtensions</PackageProjectUrl>
+    <PackageIcon>M.png</PackageIcon>
+    <RepositoryUrl>https://github.com/DrMueller/MLH.LanguageExtensions</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageLicenseUrl></PackageLicenseUrl>
     <AssemblyVersion Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</AssemblyVersion>
@@ -47,6 +47,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Strings\StringCutting\Services\" />
+    <None Include="Infrastructure/Assets/M.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
