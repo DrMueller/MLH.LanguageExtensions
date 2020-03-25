@@ -35,6 +35,7 @@ namespace Mmu.Mlh.LanguageExtensions.QualityTests.TestingAreas.Areas.Invariance.
 
             for (var i = 0; i <= AmountOfRuns; i++)
             {
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (collection != null && collection.Any())
                 {
                     continue;
