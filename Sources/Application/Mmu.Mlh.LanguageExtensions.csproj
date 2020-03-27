@@ -10,7 +10,7 @@
     <Authors>DrMueller</Authors>
     <Description>DrMuellers little Language Extensions</Description>
     <PackageProjectUrl>https://github.com/DrMueller/MLH.LanguageExtensions</PackageProjectUrl>
-    <PackageIcon>M.png</PackageIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/DrMueller/MLH.LanguageExtensions/master/Sources/Application/Infrastructure/Assets/M.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/DrMueller/MLH.LanguageExtensions</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageLicenseUrl></PackageLicenseUrl>
@@ -25,11 +25,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors />
+    <NoWarn>NU5048</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
+    <NoWarn>NU5048</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,7 +49,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Strings\StringCutting\Services\" />
-    <None Include="Infrastructure/Assets/M.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
