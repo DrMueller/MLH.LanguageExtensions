@@ -5,6 +5,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers
 {
     // We really just want the implicit convertion from object --> Either
     // The other way around we would need to know if the either is right or left, which we dont want
+
+    // We're making the content public, as we can now go one step further: We let automapper decide via type inference, which profile to use!
     public abstract class Either<TLeft, TRight>
     {
         public static implicit operator Either<TLeft, TRight>(TLeft left)
