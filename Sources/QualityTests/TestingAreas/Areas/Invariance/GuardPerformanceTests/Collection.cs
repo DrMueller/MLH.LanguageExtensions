@@ -9,7 +9,7 @@ namespace Mmu.Mlh.LanguageExtensions.QualityTests.TestingAreas.Areas.Invariance.
     [TestFixture]
     public class Collection
     {
-        private const int AmountOfRuns = 1000000;
+        private const int AmountOfRuns = 1000;
         private const int CollectionSize = 200;
 
         [Test]
