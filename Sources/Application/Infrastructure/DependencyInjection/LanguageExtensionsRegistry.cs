@@ -1,6 +1,4 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Proxies;
-using Mmu.Mlh.LanguageExtensions.Areas.Proxies.Implementation;
-using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
 using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implementation;
@@ -22,15 +20,10 @@ namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
                     scanner.ExcludeType<XmlAttributeBuilder>();
                 });
 
-            // Proxies
-            For<IDirectoryProxy>().Use<DirectoryProxy>();
-            For<IFileProxy>().Use<FileProxy>();
-            For<IPathProxy>().Use<PathProxy>();
-            For<IProcessProxy>().Use<ProcessProxy>();
-
+            // Type reflection
             For<ITypeReflectionService>().Use<TypeReflectionService>();
 
-            // StringCuttong
+            // StringCutting
             For<IStringCutterFactory>().Use<StringCutterFactory>().Singleton();
         }
     }
