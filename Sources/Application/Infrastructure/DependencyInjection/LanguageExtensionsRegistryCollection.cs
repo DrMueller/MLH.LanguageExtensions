@@ -1,20 +1,20 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
+﻿using Lamar;
+using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
 using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implementation;
 using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementation;
-using StructureMap;
 
 namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
 {
-    public class LanguageExtensionsRegistry : Registry
+    public class LanguageExtensionsRegistryCollection : ServiceRegistry
     {
-        public LanguageExtensionsRegistry()
+        public LanguageExtensionsRegistryCollection()
         {
             Scan(
                 scanner =>
                 {
-                    scanner.AssemblyContainingType<LanguageExtensionsRegistry>();
+                    scanner.AssemblyContainingType<LanguageExtensionsRegistryCollection>();
                     scanner.WithDefaultConventions();
                     scanner.ExcludeType<XmlElementBuilder>();
                     scanner.ExcludeType<XmlAttributeBuilder>();
