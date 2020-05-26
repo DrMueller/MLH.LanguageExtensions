@@ -41,14 +41,14 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
         public void Mapping_CallbackBeingNull_Throws()
         {
             // Arrange
-            var number = 123;
+            const int Number = 123;
 
             // Act & Assert
             Assert.Throws<ArgumentException>(
                 () =>
                 {
                     // ReSharper disable once UnusedVariable
-                    var actualString = number.Map<int, string>(null);
+                    var actualString = Number.Map<int, string>(null);
                 });
         }
 
@@ -56,52 +56,52 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
         public void Mapping_WithCallback_Maps()
         {
             // Arrange
-            var number = 123;
-            var stringNumber = number.ToString();
+            const int Number = 123;
+            var stringNumber = Number.ToString();
 
             // Act
             var actualInt = stringNumber.Map(f => int.Parse(stringNumber));
 
             // Assert
-            Assert.AreEqual(number, actualInt);
+            Assert.AreEqual(Number, actualInt);
         }
 
         [Test]
         public void Teeing_CallbackBeingNull_Throws()
         {
             // Arrange
-            var number = 123;
+            const int Number = 123;
 
             // Act & Assert
             Assert.Throws<ArgumentException>(
-                () => { number.Tee(null); });
+                () => { Number.Tee(null); });
         }
 
         [Test]
         public void Teeing_WithCallback_ExecutesCallback_WithpassedObject()
         {
             // Arrange
-            var number = 123;
+            const int Number = 123;
             var actualNumber = 0;
 
             // Act
-            number.Tee(num => actualNumber = num);
+            Number.Tee(num => actualNumber = num);
 
             // Assert
-            Assert.AreEqual(number, actualNumber);
+            Assert.AreEqual(Number, actualNumber);
         }
 
         [Test]
         public void Teeing_WithCallback_ReturnsSameObject()
         {
             // Arrange
-            var number = 123;
+            const int Number = 123;
 
             // Act
-            var actualNumber = number.Tee(f => { });
+            var actualNumber = Number.Tee(f => { });
 
             // Assert
-            Assert.AreEqual(number, actualNumber);
+            Assert.AreEqual(Number, actualNumber);
         }
     }
 }
