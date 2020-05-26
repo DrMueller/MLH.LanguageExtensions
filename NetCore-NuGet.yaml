@@ -14,6 +14,8 @@ resources:
     endpoint: GitHub-DrMueller
 
 jobs:
+- checkout: self
+- checkout: ALMStuff
 - job: 'BuildAndPublishToNuGet'
   displayName: 'Build and publish to NuGet'
   pool:
