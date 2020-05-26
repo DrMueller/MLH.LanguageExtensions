@@ -3,7 +3,7 @@ name: 2.3$(rev:.r) # build numbering format
 variables:
   BuildConfiguration: 'Release'
   FolderToPack: 'Application'
-  SolutionPath: '/MLH.LanguageExtensions/MLH.LanguageExtensions.sln' # The Repository is DrMueller/MLH.LanguageExtensions, but the logic cuts DrMueller
+  SolutionPath: 'MLH.LanguageExtensions/MLH.LanguageExtensions.sln' # The Repository is DrMueller/MLH.LanguageExtensions, but the logic cuts DrMueller
 
 resources:
   repositories:
