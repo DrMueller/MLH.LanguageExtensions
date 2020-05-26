@@ -3,7 +3,7 @@ name: 2.3$(rev:.r) # build numbering format
 variables:
   BuildConfiguration: 'Release'
   FolderToPack: 'Application'
-  SolutionPath: 'MLH.LanguageExtensions.sln'
+  SolutionName: 'MLH.LanguageExtensions.sln'
 
 resources:
   repositories:
@@ -19,12 +19,12 @@ jobs:
   pool:
     name: 'Hosted VS2017'
   steps:
-  - checkout: self
   - checkout: ALMStuff
+    path: ALMStuff
   - template: AzureDevOps/BuildTemplates/NetCore/Steps/Initialize_And_Test.yaml@ALMStuff
     parameters:
       BuildConfiguration: $(BuildConfiguration)
-      SolutionPath: $(Build.Repository.Name)/$(SolutionName)
+      SolutionName: $(SolutionName)
   - template: AzureDevOps/BuildTemplates/NetCore/Steps/Pack_And_Publish_To_NuGet.yaml@ALMStuff
     parameters:
       FolderToPack: $(FolderToPack)
