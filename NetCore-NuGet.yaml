@@ -19,7 +19,7 @@ jobs:
 - job: 'BuildAndPublishToNuGet'
   displayName: 'Build and publish to NuGet'
   pool:
-    name: Default
+    name: Azure Pipelines
   steps:
   - checkout: self
   - checkout: ALMStuff
