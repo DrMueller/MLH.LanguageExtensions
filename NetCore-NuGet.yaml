@@ -5,6 +5,7 @@ variables:
   FolderToPack: 'Application'
   SolutionName: 'MLH.LanguageExtensions.sln' 
   ApplicationSubPath: 'MLH.LanguageExtensions' # The logic doesn't use the full repository name, therefore we cant use the build variable
+  ReSharperSettingsFileName: 'CISettings_NuGet.DotSettings'
 
 resources:
   repositories:
@@ -27,6 +28,7 @@ jobs:
       BuildConfiguration: $(BuildConfiguration)
       SolutionName: $(SolutionName)
       ApplicationSubPath: $(ApplicationSubPath)
+      ReSharperSettingsFileName: $(ReSharperSettingsFileName)
   - template: AzureDevOps/BuildTemplates/NetCore/Steps/Pack_And_Publish_To_NuGet.yaml@ALMStuff
     parameters:
       FolderToPack: $(FolderToPack)
