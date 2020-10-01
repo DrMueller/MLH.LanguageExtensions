@@ -11,7 +11,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
 
         public override int GetHashCode(object obj)
         {
-            return obj?.GetHashCode() ?? 0;
+            return obj.GetHashCode();
         }
     }
 }
