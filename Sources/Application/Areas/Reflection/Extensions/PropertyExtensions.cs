@@ -16,8 +16,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions
                 throw new ArgumentException("You must pass a lambda of the form: '() => Class.Property' or '() => object.Property'");
             }
 
-            var propName = propertyExpression.Member.Name;
-            var propInfo = typeof(T).GetProperty(propName);
+            var prop = propertyExpression.Member.Name;
+            var propInfo = typeof(T).GetProperty(prop);
             return propInfo;
         }
 
