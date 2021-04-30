@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Collections
 {
@@ -41,6 +42,20 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Collections
             return
                 firstMap.Keys.All(x => secondMap.Keys.Contains(x) && firstMap[x] == secondMap[x]) &&
                 secondMap.Keys.All(x => firstMap.Keys.Contains(x) && secondMap[x] == firstMap[x]);
+        }
+
+        // Executes tasks one after another
+        public static async Task<IEnumerable<TResult>> SelectAsync<TResult, TSource>(this IEnumerable<TSource> source, Func<TSource, Task<TResult>> selector)
+        {
+            var result = new List<TResult>();
+
+            foreach (var entry in source)
+            {
+                var selectorResult = await selector(entry);
+                result.Add(selectorResult);
+            }
+
+            return result;
         }
     }
 }

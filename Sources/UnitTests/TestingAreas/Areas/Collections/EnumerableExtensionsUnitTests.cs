@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 using NUnit.Framework;
 
@@ -234,6 +235,42 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
 
             // Assert
             Assert.IsTrue(actualResult);
+        }
+
+        [Test]
+#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
+        public async Task SelectAsync_ExecutesTasks()
+#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
+        {
+            // Arrange
+            var intList = Enumerable.Range(0, 10).ToList();
+
+            // Act
+            var actualResult = await intList.SelectAsync(Task.FromResult);
+
+            // Assert
+            CollectionAssert.AreEqual(intList, actualResult);
+        }
+
+        [Test]
+#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
+        public async Task SelectAsync_ExecutesTasks_OneAfterAnother()
+#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
+        {
+            // Arrange
+            var newList = new List<int>();
+
+            // Act
+            var actualResult = await Enumerable.Range(0, 10).SelectAsync(
+                i =>
+                {
+                    newList.Add(i);
+
+                    return Task.FromResult(i);
+                });
+
+            // Assert
+            Assert.AreEqual(newList, actualResult);
         }
     }
 }
