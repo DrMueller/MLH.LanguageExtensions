@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Objects;
 using NUnit.Framework;
-using Trivadis.TriDispo.Common.UnitTests.TestingAreas.Areas.Objects;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
 {

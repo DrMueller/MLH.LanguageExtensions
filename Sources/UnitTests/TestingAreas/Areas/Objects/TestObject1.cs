@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace Trivadis.TriDispo.Common.UnitTests.TestingAreas.Areas.Objects
+namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
 {
     [PublicAPI]
     public class TestObject1

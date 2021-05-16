@@ -5,13 +5,13 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Objects
 {
     public static class ObjectExtensions
     {
-        public static bool CheckIfAllPropertiesAreSet(this object obj)
+        public static bool CheckIfAllPropertiesAreSet(this object item)
         {
-            var allProperties = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            var allProperties = item.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
 
             foreach (var prop in allProperties)
             {
-                var propValue = prop.GetValue(obj);
+                var propValue = prop.GetValue(item);
 
                 if (propValue is null)
                 {
