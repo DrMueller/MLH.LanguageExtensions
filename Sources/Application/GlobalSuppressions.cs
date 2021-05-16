@@ -7,8 +7,16 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly:
-    SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Domain Term",
-        Scope = "type", Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option`1")]
+    SuppressMessage(
+        "Naming",
+        "CA1716:Identifiers should not match keywords",
+        Justification = "Domain Term",
+        Scope = "type",
+        Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option`1")]
 [assembly:
-    SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Domain Term",
-        Scope = "type", Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option")]
+    SuppressMessage(
+        "Naming",
+        "CA1716:Identifiers should not match keywords",
+        Justification = "Domain Term",
+        Scope = "type",
+        Target = "~T:Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Option")]

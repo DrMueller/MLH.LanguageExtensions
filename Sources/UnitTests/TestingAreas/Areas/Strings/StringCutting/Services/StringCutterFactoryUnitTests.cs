@@ -7,12 +7,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
     [TestFixture]
     public class StringCutterFactoryUnitTests
     {
-        [SetUp]
-        public void Align()
-        {
-            _sut = new StringCutterFactory();
-        }
-
         private StringCutterFactory _sut;
 
         [TestCase(null)]
@@ -21,7 +15,16 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
         {
             // Act & Assert
             Assert.Throws<ArgumentException>(
-                () => { _sut.CreateFor(str); });
+                () =>
+                {
+                    _sut.CreateFor(str);
+                });
+        }
+
+        [SetUp]
+        public void Align()
+        {
+            _sut = new StringCutterFactory();
         }
 
         [Test]

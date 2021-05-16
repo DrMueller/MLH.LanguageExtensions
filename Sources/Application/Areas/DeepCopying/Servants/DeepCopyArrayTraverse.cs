@@ -6,11 +6,10 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
     {
         private readonly int[] _maxLengths;
 
-        public int[] Position { get; }
-
         public DeepCopyArrayTraverse(Array array)
         {
             _maxLengths = new int[array.Rank];
+
             for (var i = 0; i < array.Rank; ++i)
             {
                 _maxLengths[i] = array.GetLength(i) - 1;
@@ -18,6 +17,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
 
             Position = new int[array.Rank];
         }
+
+        public int[] Position { get; }
 
         public bool Step()
         {
@@ -29,6 +30,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying.Servants
                 }
 
                 Position[i]++;
+
                 for (var j = 0; j < i; j++)
                 {
                     Position[j] = 0;

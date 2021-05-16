@@ -74,7 +74,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
 
             // Act & Assert
             Assert.Throws<ArgumentException>(
-                () => { Number.Tee(null); });
+                () =>
+                {
+                    Number.Tee(null);
+                });
         }
 
         [Test]
@@ -98,7 +101,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
             const int Number = 123;
 
             // Act
-            var actualNumber = Number.Tee(f => { });
+            var actualNumber = Number.Tee(
+                f =>
+                {
+                });
 
             // Assert
             Assert.AreEqual(Number, actualNumber);

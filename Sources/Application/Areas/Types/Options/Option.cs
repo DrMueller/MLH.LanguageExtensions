@@ -17,12 +17,41 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
         }
     }
 
-    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification =
-        "It makes sense to keep these Classes together")]
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleClass",
+        Justification =
+            "It makes sense to keep these Classes together")]
     public abstract class Option<T> : IEquatable<Option<T>>, IEquatable<T>
     {
         public abstract bool IsApplicable { get; }
         public abstract T OptionValue { get; }
+
+        public static Option<TOpt> ToOption<TOpt>(TOpt optionValue)
+        {
+            return Option.CreateApplicable(optionValue);
+        }
+
+        public abstract bool Equals(Option<T> other);
+
+        public abstract bool Equals(T other);
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == GetType() && Equals((Option<T>)obj);
+        }
+
+        public abstract override int GetHashCode();
 
         public static bool operator ==(Option<T> a, Option<T> b)
         {
@@ -58,31 +87,5 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
         {
             return !(a == b);
         }
-
-        public static Option<TOpt> ToOption<TOpt>(TOpt optionValue)
-        {
-            return Option.CreateApplicable(optionValue);
-        }
-
-        public abstract bool Equals(Option<T> other);
-
-        public abstract bool Equals(T other);
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            return obj.GetType() == GetType() && Equals((Option<T>)obj);
-        }
-
-        public abstract override int GetHashCode();
     }
 }

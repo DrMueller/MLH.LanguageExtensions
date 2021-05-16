@@ -15,17 +15,20 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults
         }
     }
 
-    [SuppressMessage("Microsoft.Usage", "SA1402:FileMayOnlyContainASingleType", Justification =
-        "It makes sense to keep these Classes together")]
+    [SuppressMessage(
+        "Microsoft.Usage",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification =
+            "It makes sense to keep these Classes together")]
     public class FunctionResult<T>
     {
-        public bool IsSuccess { get; }
-        public T Value { get; }
-
         public FunctionResult(bool isSuccess, T value)
         {
             IsSuccess = isSuccess;
             Value = value;
         }
+
+        public bool IsSuccess { get; }
+        public T Value { get; }
     }
 }

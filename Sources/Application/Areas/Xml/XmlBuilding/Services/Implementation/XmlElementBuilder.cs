@@ -20,8 +20,11 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
             _element = new XElement(elementName);
         }
 
-        [SuppressMessage("Microsoft.Usage", "SA1119:StatementMustNotUseUnnecessaryParenthesis", Justification =
-            "Actually needed")]
+        [SuppressMessage(
+            "Microsoft.Usage",
+            "SA1119:StatementMustNotUseUnnecessaryParenthesis",
+            Justification =
+                "Actually needed")]
         public IXmlElementBuilder BuildElement()
         {
             if (_condition != null && !_condition.CheckIfSatisfiedBy(_value))
@@ -38,6 +41,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
             }
 
             _parent.Add(_element);
+
             return _parentElementBuilder;
         }
 
@@ -59,6 +63,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
         public IXmlElementBuilder WithCondition(XmlBuildingCondition condition)
         {
             _condition = condition;
+
             return this;
         }
 
@@ -74,6 +79,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
         public IXmlElementBuilder WithElementValue(object value)
         {
             _value = value;
+
             return this;
         }
     }

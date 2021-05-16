@@ -8,13 +8,13 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
     [TestFixture]
     public class EnumerableTypeReflectionServiceUnitTests
     {
+        private EnumerableTypeReflectionService _sut;
+
         [SetUp]
         public void SetUp()
         {
             _sut = new EnumerableTypeReflectionService();
         }
-
-        private EnumerableTypeReflectionService _sut;
 
         [Test]
         public void GettingGenericTypeOfEnumerable_WithGenericList_GetsGenericType()

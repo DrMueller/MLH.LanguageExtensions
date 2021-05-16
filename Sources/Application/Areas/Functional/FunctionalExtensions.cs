@@ -29,6 +29,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Functional
             Guard.ObjectNotNull(() => callback);
 
             callback(@this);
+
             return @this;
         }
     }

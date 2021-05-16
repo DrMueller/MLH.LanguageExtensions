@@ -8,22 +8,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
     public class DeepCopyServiceUnitTests
     {
         [Test]
-        public void RecursivelyCopyingReferenceTypes_CreatesNewReferences()
-        {
-            // Arrange
-            var subModel2 = new DeepCopyModel(null, "SubModel2", 12);
-            var subModel1 = new DeepCopyModel(subModel2, "SubModel1", 1);
-            var model = new DeepCopyModel(subModel1, null, 0);
-
-            // Act
-            var actualCopy = DeepCopyService.DeepCopy(model);
-
-            // Assert
-            Assert.IsFalse(ReferenceEquals(actualCopy.SubModel, model.SubModel));
-            Assert.IsFalse(ReferenceEquals(actualCopy.SubModel.SubModel, model.SubModel.SubModel));
-        }
-
-        [Test]
         public void CopyingReferenceType_CreatesNewReference()
         {
             // Arrange
@@ -67,6 +51,22 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
 
             // Assert
             Assert.AreEqual(Age, actualCopy);
+        }
+
+        [Test]
+        public void RecursivelyCopyingReferenceTypes_CreatesNewReferences()
+        {
+            // Arrange
+            var subModel2 = new DeepCopyModel(null, "SubModel2", 12);
+            var subModel1 = new DeepCopyModel(subModel2, "SubModel1", 1);
+            var model = new DeepCopyModel(subModel1, null, 0);
+
+            // Act
+            var actualCopy = DeepCopyService.DeepCopy(model);
+
+            // Assert
+            Assert.IsFalse(ReferenceEquals(actualCopy.SubModel, model.SubModel));
+            Assert.IsFalse(ReferenceEquals(actualCopy.SubModel.SubModel, model.SubModel.SubModel));
         }
     }
 }

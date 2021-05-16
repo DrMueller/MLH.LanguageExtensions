@@ -15,6 +15,7 @@
             }
 
             var strValue = (string)value;
+
             return !string.IsNullOrEmpty(strValue);
         }
     }

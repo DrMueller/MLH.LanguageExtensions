@@ -2,11 +2,11 @@
 {
     public class Individual
     {
-        public string FirstName { get; }
-
         public Individual(string firstName)
         {
             FirstName = firstName;
         }
+
+        public string FirstName { get; }
     }
 }

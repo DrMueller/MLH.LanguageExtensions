@@ -6,6 +6,38 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DateTimes
     {
         private readonly DateTime _value;
 
+        private UtcDateTime(DateTime? dateTime)
+        {
+            HasValue = dateTime.HasValue;
+
+            if (!dateTime.HasValue)
+            {
+                return;
+            }
+
+            switch (dateTime.Value.Kind)
+            {
+                case DateTimeKind.Local:
+                {
+                    _value = dateTime.Value.ToUniversalTime();
+
+                    break;
+                }
+
+                case DateTimeKind.Utc:
+                {
+                    _value = dateTime.Value;
+
+                    break;
+                }
+
+                case DateTimeKind.Unspecified:
+                {
+                    throw new InvalidOperationException($"Unspecified DateTmeKind for {dateTime.Value}");
+                }
+            }
+        }
+
         public bool HasValue { get; }
 
         public DateTime Value
@@ -18,35 +50,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DateTimes
                 }
 
                 return _value;
-            }
-        }
-
-        private UtcDateTime(DateTime? dateTime)
-        {
-            HasValue = dateTime.HasValue;
-            if (!dateTime.HasValue)
-            {
-                return;
-            }
-
-            switch (dateTime.Value.Kind)
-            {
-                case DateTimeKind.Local:
-                {
-                    _value = dateTime.Value.ToUniversalTime();
-                    break;
-                }
-
-                case DateTimeKind.Utc:
-                {
-                    _value = dateTime.Value;
-                    break;
-                }
-
-                case DateTimeKind.Unspecified:
-                {
-                    throw new InvalidOperationException($"Unspecified DateTmeKind for {dateTime.Value}");
-                }
             }
         }
 

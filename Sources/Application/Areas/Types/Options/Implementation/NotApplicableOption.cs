@@ -4,13 +4,13 @@
     {
         private readonly bool _treatAsEqualsTrue;
 
-        public override bool IsApplicable => false;
-        public override T OptionValue => default;
-
         public NotApplicableOption(bool treatAsEqualsTrue)
         {
             _treatAsEqualsTrue = treatAsEqualsTrue;
         }
+
+        public override bool IsApplicable => false;
+        public override T OptionValue => default;
 
         public override bool Equals(Option<T> other)
         {

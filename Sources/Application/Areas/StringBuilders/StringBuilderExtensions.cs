@@ -21,6 +21,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.StringBuilders
             for (var i = 0; i < values.Count; i++)
             {
                 sb.Append(values.ElementAt(i));
+
                 if (i + 1 < values.Count)
                 {
                     sb.Append(seperator);
@@ -31,6 +32,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.StringBuilders
         private static string AppendIndentation(string value, int indentationSize)
         {
             var emptyStr = new string(' ', indentationSize);
+
             return emptyStr + value;
         }
     }

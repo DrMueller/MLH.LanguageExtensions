@@ -39,12 +39,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
         public IXmlAttributeBuilder WithAttributeValue(object value)
         {
             _value = value;
+
             return this;
         }
 
         public IXmlAttributeBuilder WithCondition(XmlBuildingCondition condition)
         {
             _condition = condition;
+
             return this;
         }
     }

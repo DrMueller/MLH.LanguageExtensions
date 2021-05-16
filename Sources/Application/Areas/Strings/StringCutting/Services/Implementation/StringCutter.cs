@@ -16,6 +16,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implem
             if (string.IsNullOrEmpty(_str))
             {
                 str = string.Empty;
+
                 return this;
             }
 

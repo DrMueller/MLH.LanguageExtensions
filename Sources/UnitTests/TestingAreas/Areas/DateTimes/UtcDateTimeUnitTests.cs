@@ -43,8 +43,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             Assert.IsFalse(actualUtcDateTime.HasValue);
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification =
-            "Expected Exception for test")]
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1031:DoNotCatchGeneralExceptionTypes",
+            Justification =
+                "Expected Exception for test")]
         [Test]
         public void CreatingFromDateTime_DateTimeBeingUnspecified_ThrowsException()
         {
@@ -93,8 +96,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             Assert.AreEqual(DateTimeKind.Utc, actualUtcDateTime.Value.Kind);
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification =
-            "Expected Exception for test")]
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1031:DoNotCatchGeneralExceptionTypes",
+            Justification =
+                "Expected Exception for test")]
         [Test]
         public void GettingValue_BeingEmpty_ThrowsException()
         {

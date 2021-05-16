@@ -4,17 +4,12 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers.Implementation
 {
     public class Left<TLeft, TRight> : Either<TLeft, TRight>
     {
-        public TLeft Content { get; }
-
         public Left(TLeft content)
         {
             Content = content;
         }
 
-        public static implicit operator TLeft(Left<TLeft, TRight> left)
-        {
-            return left.Content;
-        }
+        public TLeft Content { get; }
 
         public override Either<TLeft, TNewRight> MapRight<TNewRight>(Func<TRight, TNewRight> map)
         {
@@ -29,6 +24,11 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers.Implementation
         public TLeft ToTLeft()
         {
             return Content;
+        }
+
+        public static implicit operator TLeft(Left<TLeft, TRight> left)
+        {
+            return left.Content;
         }
     }
 }

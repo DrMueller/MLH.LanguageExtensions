@@ -22,50 +22,13 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         }
     }
 
-    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification =
-        "It makes sense to keep these Classes together")]
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleClass",
+        Justification =
+            "It makes sense to keep these Classes together")]
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
-        public static bool operator ==(Maybe<T> a, Maybe<T> b)
-        {
-            if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
-            {
-                return true;
-            }
-
-            if (!ReferenceEquals(null, a) && a.Equals(b))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool operator ==(Maybe<T> a, T b)
-        {
-            return !ReferenceEquals(null, a) && a.Equals(b);
-        }
-
-        public static implicit operator Maybe<T>(T value)
-        {
-            return ToMaybe(value);
-        }
-
-        public static implicit operator T(Maybe<T> maybe)
-        {
-            return ToT(maybe);
-        }
-
-        public static bool operator !=(Maybe<T> a, Maybe<T> b)
-        {
-            return !(a == b);
-        }
-
-        public static bool operator !=(Maybe<T> a, T b)
-        {
-            return !(a == b);
-        }
-
         public static Maybe<T> ToMaybe(T value)
         {
             return new Some<T>(value);
@@ -108,5 +71,45 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         public abstract T Reduce(Func<T> whenNone);
 
         public abstract T Reduce(T whenNone);
+
+        public static bool operator ==(Maybe<T> a, Maybe<T> b)
+        {
+            if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
+            {
+                return true;
+            }
+
+            if (!ReferenceEquals(null, a) && a.Equals(b))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool operator ==(Maybe<T> a, T b)
+        {
+            return !ReferenceEquals(null, a) && a.Equals(b);
+        }
+
+        public static implicit operator Maybe<T>(T value)
+        {
+            return ToMaybe(value);
+        }
+
+        public static implicit operator T(Maybe<T> maybe)
+        {
+            return ToT(maybe);
+        }
+
+        public static bool operator !=(Maybe<T> a, Maybe<T> b)
+        {
+            return !(a == b);
+        }
+
+        public static bool operator !=(Maybe<T> a, T b)
+        {
+            return !(a == b);
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
             where T : struct
         {
             var subElement = TryParsingSubElementValue<T>(element, subElementLocalName);
+
             return subElement ?? default;
         }
 
@@ -23,6 +24,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
             }
 
             var enumValue = (T)Enum.Parse(typeof(T), stringValue, true);
+
             return enumValue;
         }
 
@@ -42,12 +44,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
             }
 
             var result = (T)Convert.ChangeType(stringValue, typeof(T));
+
             return result;
         }
 
         private static string TryGettingValueOfSubElement(XContainer element, string subElementLocalName)
         {
             var subElement = element.Descendants().FirstOrDefault(f => f.Name.LocalName == subElementLocalName);
+
             return subElement?.Value;
         }
     }

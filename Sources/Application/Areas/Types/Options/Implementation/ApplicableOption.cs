@@ -2,13 +2,13 @@
 {
     public sealed class ApplicableOption<T> : Option<T>
     {
-        public override bool IsApplicable => true;
-        public override T OptionValue { get; }
-
         public ApplicableOption(T optionValue)
         {
             OptionValue = optionValue;
         }
+
+        public override bool IsApplicable => true;
+        public override T OptionValue { get; }
 
         public override bool Equals(Option<T> other)
         {

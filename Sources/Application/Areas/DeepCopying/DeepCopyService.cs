@@ -14,6 +14,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
             var equalityComparer = new DeepCopyReferenceEqualityComparer();
             var visitedObjectsDict = new Dictionary<object, object>(equalityComparer);
             var copy = DeepCopy(source, visitedObjectsDict);
+
             return (T)copy;
         }
 
@@ -55,6 +56,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
             }
 
             var typeToReflect = originalObject.GetType();
+
             if (CheckIfTypeIsPrimitive(typeToReflect))
             {
                 return originalObject;
@@ -71,9 +73,11 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
             }
 
             var cloneObject = _cloneMethod.Invoke(originalObject, null);
+
             if (typeToReflect.IsArray)
             {
                 var arrayType = typeToReflect.GetElementType();
+
                 if (CheckIfTypeIsPrimitive(arrayType) == false)
                 {
                     var clonedArray = (Array)cloneObject;
@@ -84,6 +88,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
             visited.Add(originalObject, cloneObject);
             CopyFields(originalObject, visited, cloneObject, typeToReflect);
             RecursiveCopyBaseTypePrivateFields(originalObject, visited, cloneObject, typeToReflect);
+
             return cloneObject;
         }
 

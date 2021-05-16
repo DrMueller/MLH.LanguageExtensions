@@ -9,16 +9,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers
     // We're making the content public, as we can now go one step further: We let automapper decide via type inference, which profile to use!
     public abstract class Either<TLeft, TRight>
     {
-        public static implicit operator Either<TLeft, TRight>(TLeft left)
-        {
-            return new Left<TLeft, TRight>(left);
-        }
-
-        public static implicit operator Either<TLeft, TRight>(TRight right)
-        {
-            return new Right<TLeft, TRight>(right);
-        }
-
         public abstract Either<TLeft, TNewRight> MapRight<TNewRight>(Func<TRight, TNewRight> map);
 
         public abstract TRight Reduce(Func<TLeft, TRight> leftMap);
@@ -31,6 +21,16 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers
         public Either<TLeft, TRight> ToEither(TLeft left)
         {
             return new Left<TLeft, TRight>(left);
+        }
+
+        public static implicit operator Either<TLeft, TRight>(TLeft left)
+        {
+            return new Left<TLeft, TRight>(left);
+        }
+
+        public static implicit operator Either<TLeft, TRight>(TRight right)
+        {
+            return new Right<TLeft, TRight>(right);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation
             }
 
             var baseType = givenType.BaseType;
+
             return baseType != null && CheckIfTypeIsAssignableToGenericType(baseType, genericType);
         }
     }
