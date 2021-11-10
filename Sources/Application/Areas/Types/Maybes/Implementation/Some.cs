@@ -9,7 +9,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 
         public Some(T content)
         {
-            Guard.ObjectNotNull(() => content);
             _content = content;
         }
 
@@ -23,7 +22,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
             return ContentEquals(other);
         }
 
-        public bool Equals(Some<T> other)
+        public bool Equals(Some<T>? other)
         {
             return !ReferenceEquals(null, other) &&
                 ContentEquals(other._content);
@@ -34,14 +33,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
             return whenSome(_content);
         }
 
-        public override void Evaluate(Action<T> whenSome = null, Action whenNone = null)
+        public override void Evaluate(Action<T>? whenSome = null, Action? whenNone = null)
         {
             whenSome?.Invoke(_content);
         }
 
         public override int GetHashCode()
         {
-            return _content.GetHashCode();
+            return _content!.GetHashCode();
         }
 
         public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping)

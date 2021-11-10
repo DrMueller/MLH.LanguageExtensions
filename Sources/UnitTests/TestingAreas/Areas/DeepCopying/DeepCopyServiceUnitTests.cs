@@ -34,9 +34,9 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             // Assert
             Assert.AreEqual(model.Name, actualCopy.Name);
             Assert.AreEqual(model.Age, actualCopy.Age);
-            Assert.AreEqual(model.SubModel.Name, actualCopy.SubModel.Name);
+            Assert.AreEqual(model.SubModel!.Name, actualCopy!.SubModel!.Name);
             Assert.AreEqual(model.SubModel.Age, actualCopy.SubModel.Age);
-            Assert.AreEqual(model.SubModel.SubModel.Name, actualCopy.SubModel.SubModel.Name);
+            Assert.AreEqual(model.SubModel!.SubModel!.Name, actualCopy!.SubModel!.SubModel!.Name);
             Assert.AreEqual(model.SubModel.SubModel.Age, actualCopy.SubModel.SubModel.Age);
         }
 
@@ -66,7 +66,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
 
             // Assert
             Assert.IsFalse(ReferenceEquals(actualCopy.SubModel, model.SubModel));
-            Assert.IsFalse(ReferenceEquals(actualCopy.SubModel.SubModel, model.SubModel.SubModel));
+            Assert.IsFalse(ReferenceEquals(actualCopy!.SubModel!.SubModel, model!.SubModel!.SubModel));
         }
     }
 }

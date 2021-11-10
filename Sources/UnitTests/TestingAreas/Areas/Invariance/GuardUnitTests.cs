@@ -62,7 +62,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         public void CheckCollectionNullOrEmpty_WithNullCollection_ThrowsArgumentException()
         {
             // Arrange
-            var modelWithNullCollection = new GuardTestModel("Test", new object(), null);
+            var modelWithNullCollection = new GuardTestModel("Test", new object(), null!);
 
             // Act & Assert
             Assert.Throws<ArgumentException>(
@@ -73,7 +73,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         public void CheckingObjectNull_WithNullObject_ThrowsArgumentException()
         {
             // Given
-            var modelWithObjectNull = new GuardTestModel("Test", null, new List<object>());
+            var modelWithObjectNull = new GuardTestModel("Test", null!, new List<object>());
 
             // Act & Assert
             Assert.Throws<ArgumentException>(
@@ -114,7 +114,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         public void CheckThat_WithThatBeingFalse_DoesThrowArgumentException_WithPassedMessage()
         {
             // Arrange
-            var modelWithoutString = new GuardTestModel(string.Empty, null, new List<object>());
+            var modelWithoutString = new GuardTestModel(string.Empty, null!, new List<object>());
             var passedMessage = Guid.NewGuid() + "String must not be null or empty.";
 
             // Act & Assert
@@ -125,7 +125,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Invariance
         public void CheckThat_WithThatBeingTrue_DoesNotThrowException()
         {
             // Arrange
-            var modelWithoutString = new GuardTestModel(string.Empty, null, new List<object>());
+            var modelWithoutString = new GuardTestModel(string.Empty, null!, new List<object>());
             var passedMessage = Guid.NewGuid() + "String must not be null or empty.";
 
             // Act & Assert

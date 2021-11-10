@@ -51,5 +51,46 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Function
             // Assert
             Assert.IsTrue(sut.IsSuccess);
         }
+
+        [Test]
+        public void CreatingFromDefault_ValueBeingDefault_CreatesSuccessFalse()
+        {
+            // Act
+            var sut = FunctionResult.CreateFromDefault(0);
+
+            // Assert
+            Assert.IsFalse(sut.IsSuccess);
+        }
+
+        [TestCase(1)]
+        [TestCase(" ")]
+        public void CreatingFromDefault_ValueNotBeingDefault_CreatesSuccessTrue(object value)
+        {
+            // Act
+            var sut = FunctionResult.CreateFromDefault(value);
+
+            // Assert
+            Assert.IsTrue(sut.IsSuccess);
+        }
+
+        [Test]
+        public void CreatingFromDefault_ObjectNotBeingNull_CreatesSuccessTrue()
+        {
+            // Act
+            var sut = FunctionResult.CreateFromDefault(new object());
+
+            // Assert
+            Assert.IsTrue(sut.IsSuccess);
+        }
+
+        [Test]
+        public void CreatingFromDefault_ObjecBeingNull_CreatesSuccessFalse()
+        {
+            // Act
+            var sut = FunctionResult.CreateFromDefault<object>(null!);
+
+            // Assert
+            Assert.False(sut.IsSuccess);
+        }
     }
 }

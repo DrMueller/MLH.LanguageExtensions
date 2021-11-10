@@ -55,7 +55,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             var unspecifiedDateTime = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified);
 
             // Act
-            Exception actualException = null;
+            Exception? actualException = null;
 
             try
             {
@@ -108,7 +108,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             var emptyUtcDateTime = UtcDateTime.CreateFromDateTime(null);
 
             // Act
-            Exception actualException = null;
+            Exception? actualException = null;
 
             try
             {

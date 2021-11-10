@@ -20,14 +20,14 @@
             return OptionValueEquals(other);
         }
 
-        public bool Equals(ApplicableOption<T> other)
+        public bool Equals(ApplicableOption<T>? other)
         {
             return !ReferenceEquals(null, other) && OptionValueEquals(other.OptionValue);
         }
 
         public override int GetHashCode()
         {
-            return OptionValue.GetHashCode();
+            return OptionValue!.GetHashCode();
         }
 
         private bool OptionValueEquals(T other)

@@ -7,7 +7,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
     [TestFixture]
     public class StringCutterFactoryUnitTests
     {
-        private StringCutterFactory _sut;
+        private StringCutterFactory? _sut;
 
         [TestCase(null)]
         [TestCase("")]
@@ -17,7 +17,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             Assert.Throws<ArgumentException>(
                 () =>
                 {
-                    _sut.CreateFor(str);
+                    _sut!.CreateFor(str);
                 });
         }
 
@@ -34,7 +34,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             const string PassedString = "HelloTest";
 
             // Act
-            var actualCutter = _sut.CreateFor(PassedString);
+            var actualCutter = _sut!.CreateFor(PassedString);
             actualCutter.Cut(PassedString.Length, out var actualString);
 
             // Assert

@@ -20,7 +20,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions
             var prop = propertyExpression.Member.Name;
             var propInfo = typeof(T).GetProperty(prop);
 
-            return propInfo;
+            return propInfo!;
         }
 
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "owner", Justification = "Extension Method: Implicitly takes type of owner!")]
@@ -38,12 +38,12 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions
 
             if (expression.Body is UnaryExpression unaryExpression)
             {
-                memberExpression = unaryExpression.Operand as MemberExpression;
-
-                if (memberExpression == null)
+                if (!(unaryExpression.Operand is MemberExpression mem))
                 {
                     throw new NotImplementedException();
                 }
+
+                memberExpression = mem;
             }
             else
             {

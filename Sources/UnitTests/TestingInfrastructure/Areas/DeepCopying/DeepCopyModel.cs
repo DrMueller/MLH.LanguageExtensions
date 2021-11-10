@@ -2,7 +2,7 @@
 {
     public class DeepCopyModel
     {
-        public DeepCopyModel(DeepCopyModel subModel, string name, int age)
+        public DeepCopyModel(DeepCopyModel? subModel, string? name, int age)
         {
             SubModel = subModel;
             Name = name;
@@ -10,7 +10,7 @@
         }
 
         public int Age { get; }
-        public string Name { get; }
-        public DeepCopyModel SubModel { get; }
+        public string? Name { get; }
+        public DeepCopyModel? SubModel { get; }
     }
 }

@@ -9,8 +9,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
         private readonly XElement _element;
         private readonly XElement _parent;
         private readonly IXmlElementBuilder _parentElementBuilder;
-        private XmlBuildingCondition _condition;
-        private object _value;
+        private XmlBuildingCondition? _condition;
+        private object? _value;
 
         internal XmlElementBuilder(XElement parent, IXmlElementBuilder parentElementBuilder, XName elementName)
         {

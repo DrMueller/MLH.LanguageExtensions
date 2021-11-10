@@ -76,7 +76,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             };
 
             // Act
-            var actualContainsAny = list1.ContainsAny(null);
+            var actualContainsAny = list1.ContainsAny(null!);
 
             // Assert
             Assert.IsFalse(actualContainsAny);

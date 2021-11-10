@@ -28,7 +28,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
             return enumValue;
         }
 
-        public string TryParsingSubElementStringValue(XElement element, string subElementLocalName)
+        public string? TryParsingSubElementStringValue(XElement element, string subElementLocalName)
         {
             return TryGettingValueOfSubElement(element, subElementLocalName);
         }
@@ -48,7 +48,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading.Implementation
             return result;
         }
 
-        private static string TryGettingValueOfSubElement(XContainer element, string subElementLocalName)
+        private static string? TryGettingValueOfSubElement(XContainer element, string subElementLocalName)
         {
             var subElement = element.Descendants().FirstOrDefault(f => f.Name.LocalName == subElementLocalName);
 

@@ -6,7 +6,13 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults
     {
         public static FunctionResult<T> CreateFailure<T>()
         {
-            return new FunctionResult<T>(false, default);
+            return new FunctionResult<T>(false, default!);
+        }
+
+        public static FunctionResult<T> CreateFromDefault<T>(T value)
+        {
+            // Careful, default doesn't work, it has to be default(T)
+            return Equals(value, default(T)) ? CreateFailure<T>() : CreateSuccess(value);
         }
 
         public static FunctionResult<T> CreateSuccess<T>(T value)

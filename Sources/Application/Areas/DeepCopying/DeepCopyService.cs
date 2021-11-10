@@ -7,7 +7,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
 {
     public static class DeepCopyService
     {
-        private static readonly MethodInfo _cloneMethod = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo? _cloneMethod = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
 
         public static T DeepCopy<T>(T source)
         {
@@ -15,7 +15,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
             var visitedObjectsDict = new Dictionary<object, object>(equalityComparer);
             var copy = DeepCopy(source, visitedObjectsDict);
 
-            return (T)copy;
+            return (T)copy!;
         }
 
         private static bool CheckIfTypeIsPrimitive(Type type)
@@ -28,7 +28,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
             return type.IsValueType & type.IsPrimitive;
         }
 
-        private static void CopyFields(object originalObject, IDictionary<object, object> visited, object cloneObject, IReflect typeToReflect, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.FlattenHierarchy, Func<FieldInfo, bool> filter = null)
+        private static void CopyFields(object originalObject, IDictionary<object, object> visited, object cloneObject, IReflect typeToReflect, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.FlattenHierarchy, Func<FieldInfo, bool>? filter = null)
         {
             foreach (var fieldInfo in typeToReflect.GetFields(bindingFlags))
             {
@@ -48,7 +48,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
             }
         }
 
-        private static object DeepCopy(object originalObject, IDictionary<object, object> visited)
+        private static object? DeepCopy(object? originalObject, IDictionary<object, object> visited)
         {
             if (originalObject == null)
             {
@@ -72,13 +72,13 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
                 return null;
             }
 
-            var cloneObject = _cloneMethod.Invoke(originalObject, null);
+            var cloneObject = _cloneMethod!.Invoke(originalObject, null);
 
             if (typeToReflect.IsArray)
             {
                 var arrayType = typeToReflect.GetElementType();
 
-                if (CheckIfTypeIsPrimitive(arrayType) == false)
+                if (CheckIfTypeIsPrimitive(arrayType!) == false)
                 {
                     var clonedArray = (Array)cloneObject;
                     clonedArray.ForEach((array, indices) => array.SetValue(DeepCopy(clonedArray.GetValue(indices), visited), indices));

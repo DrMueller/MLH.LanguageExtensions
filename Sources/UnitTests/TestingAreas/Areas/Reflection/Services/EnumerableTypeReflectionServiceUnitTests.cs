@@ -8,7 +8,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
     [TestFixture]
     public class EnumerableTypeReflectionServiceUnitTests
     {
-        private EnumerableTypeReflectionService _sut;
+        private EnumerableTypeReflectionService? _sut;
 
         [SetUp]
         public void SetUp()
@@ -23,7 +23,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
             var genericList = new List<string>();
 
             // Act
-            var actualGenericType = _sut.GetGenericTypeOfIEnumerable(genericList);
+            var actualGenericType = _sut!.GetGenericTypeOfIEnumerable(genericList);
 
             // Assert
             Assert.AreEqual(actualGenericType, typeof(string));
@@ -36,7 +36,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
             var nonGenericArrayList = new ArrayList();
 
             // Act
-            var actualGenericType = _sut.GetGenericTypeOfIEnumerable(nonGenericArrayList);
+            var actualGenericType = _sut!.GetGenericTypeOfIEnumerable(nonGenericArrayList);
 
             // Assert
             Assert.AreEqual(actualGenericType, typeof(object));

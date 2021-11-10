@@ -48,7 +48,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
                 () =>
                 {
                     // ReSharper disable once UnusedVariable
-                    var actualString = Number.Map<int, string>(null);
+                    var actualString = Number.Map<int, string>(null!);
                 });
         }
 
@@ -76,7 +76,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
             Assert.Throws<ArgumentException>(
                 () =>
                 {
-                    Number.Tee(null);
+                    Number.Tee(null!);
                 });
         }
 

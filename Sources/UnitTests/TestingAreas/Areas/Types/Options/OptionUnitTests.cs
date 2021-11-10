@@ -65,7 +65,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
         public void CreatingApplicable_CreatesApplicable()
         {
             // Act
-            var actualApplicable = Option.CreateApplicable<object>(null);
+            var actualApplicable = Option.CreateApplicable<object>(null!);
 
             // Assert
             Assert.IsInstanceOf<ApplicableOption<object>>(actualApplicable);

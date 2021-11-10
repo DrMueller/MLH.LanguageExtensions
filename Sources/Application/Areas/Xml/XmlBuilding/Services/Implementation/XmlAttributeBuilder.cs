@@ -9,8 +9,8 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
         private readonly string _attributeName;
         private readonly XElement _element;
         private readonly IXmlElementBuilder _xmlElementBuilder;
-        private XmlBuildingCondition _condition;
-        private object _value;
+        private XmlBuildingCondition? _condition;
+        private object? _value;
 
         public XmlAttributeBuilder(IXmlElementBuilder xmlElementBuilder, XElement element, string attributeName)
         {

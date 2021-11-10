@@ -14,7 +14,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
             return false;
         }
 
-        public bool Equals(None<T> other)
+        public bool Equals(None<T>? other)
         {
             return !ReferenceEquals(null, other);
         }
@@ -24,7 +24,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
             return whenNone();
         }
 
-        public override void Evaluate(Action<T> whenSome = null, Action whenNone = null)
+        public override void Evaluate(Action<T>? whenSome = null, Action? whenNone = null)
         {
             whenNone?.Invoke();
         }

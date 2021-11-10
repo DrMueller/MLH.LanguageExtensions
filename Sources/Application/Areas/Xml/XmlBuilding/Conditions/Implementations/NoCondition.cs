@@ -2,7 +2,7 @@
 {
     public class NoCondition : XmlBuildingCondition
     {
-        public override bool CheckIfSatisfiedBy(object value)
+        public override bool CheckIfSatisfiedBy(object? value)
         {
             return true;
         }

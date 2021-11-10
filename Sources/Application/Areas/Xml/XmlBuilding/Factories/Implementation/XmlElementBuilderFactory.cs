@@ -8,7 +8,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Factories.Implementat
     {
         public IXmlElementBuilder CreateTopLevelElement(XName elementName)
         {
-            return new XmlElementBuilder(null, null, elementName);
+            return new XmlElementBuilder(null!, null!, elementName);
         }
     }
 }

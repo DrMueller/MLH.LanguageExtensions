@@ -2,7 +2,7 @@
 {
     public class NotNullCondition : XmlBuildingCondition
     {
-        public override bool CheckIfSatisfiedBy(object value)
+        public override bool CheckIfSatisfiedBy(object? value)
         {
             return value != null;
         }

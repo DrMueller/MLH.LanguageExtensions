@@ -7,6 +7,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
     {
         public int TestInt { get; set; }
         public long? TestLong { get; set; }
-        public string TestString { get; set; }
+        public string? TestString { get; set; }
     }
 }

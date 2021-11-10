@@ -10,7 +10,7 @@
         }
 
         public override bool IsApplicable => false;
-        public override T OptionValue => default;
+        public override T OptionValue => default!;
 
         public override bool Equals(Option<T> other)
         {

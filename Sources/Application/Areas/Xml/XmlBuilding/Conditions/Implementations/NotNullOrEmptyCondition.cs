@@ -2,19 +2,17 @@
 {
     public class NotNullOrEmptyCondition : XmlBuildingCondition
     {
-        public override bool CheckIfSatisfiedBy(object value)
+        public override bool CheckIfSatisfiedBy(object? value)
         {
             if (value == null)
             {
                 return false;
             }
 
-            if (!(value is string))
+            if (!(value is string strValue))
             {
                 return true;
             }
-
-            var strValue = (string)value;
 
             return !string.IsNullOrEmpty(strValue);
         }

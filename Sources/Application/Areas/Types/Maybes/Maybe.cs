@@ -38,7 +38,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         {
             return maybe.Evaluate(
                 value => value,
-                () => default);
+                () => default!);
         }
 
         public abstract bool Equals(Maybe<T> other);
@@ -62,7 +62,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 
         public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
 
-        public abstract void Evaluate(Action<T> whenSome = null, Action whenNone = null);
+        public abstract void Evaluate(Action<T>? whenSome = null, Action? whenNone = null);
 
         public abstract override int GetHashCode();
 

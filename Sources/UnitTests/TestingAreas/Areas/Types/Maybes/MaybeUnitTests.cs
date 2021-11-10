@@ -90,7 +90,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
         public void CreatingMaybeFromNullable_WithNull_CreatesNone()
         {
             // Act
-            var maybe = Maybe.CreateFromNullable<object>(null);
+            var maybe = Maybe.CreateFromNullable<object>(null!);
 
             // Assert
             Assert.That(maybe, Is.TypeOf<None<object>>());
@@ -114,13 +114,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
 
             // Assert
             Assert.That(actualSomeMaybe, Is.TypeOf<Some<object>>());
-        }
-
-        [Test]
-        public void CreatingSomeMaybe_WithNullObject_ThrowsArgumentException()
-        {
-            // Act & Assert
-            Assert.Throws<ArgumentException>(() => Maybe.CreateSome<object>(null));
         }
 
         [Test]

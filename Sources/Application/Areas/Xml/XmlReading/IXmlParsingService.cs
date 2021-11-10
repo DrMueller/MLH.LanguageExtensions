@@ -9,7 +9,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlReading
 
         T TryParsingSubElementEnumValue<T>(XElement element, string subElementLocalName, T defaultValue);
 
-        string TryParsingSubElementStringValue(XElement element, string subElementLocalName);
+        string? TryParsingSubElementStringValue(XElement element, string subElementLocalName);
 
         T? TryParsingSubElementValue<T>(XElement element, string subElementLocalName)
             where T : struct;
