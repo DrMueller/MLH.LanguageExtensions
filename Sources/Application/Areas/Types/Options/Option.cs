@@ -36,7 +36,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
 
         public abstract bool Equals(T other);
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj))
             {
@@ -53,14 +53,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
 
         public abstract override int GetHashCode();
 
-        public static bool operator ==(Option<T> a, Option<T> b)
+        public static bool operator ==(Option<T>? a, Option<T>? b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
             {
                 return true;
             }
 
-            if (!ReferenceEquals(null, a) && a.Equals(b))
+            if (!ReferenceEquals(null, a) && !ReferenceEquals(null, b) && a.Equals(b))
             {
                 return true;
             }
@@ -68,7 +68,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
             return false;
         }
 
-        public static bool operator ==(Option<T> a, T b)
+        public static bool operator ==(Option<T>? a, T b)
         {
             return !ReferenceEquals(null, a) && a.Equals(b);
         }
@@ -78,14 +78,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
             return ToOption(optionValue);
         }
 
-        public static bool operator !=(Option<T> a, Option<T> b)
+        public static bool operator !=(Option<T>? a, Option<T>? b)
         {
             return !(a == b);
         }
 
-        public static bool operator !=(Option<T> a, T b)
+        public static bool operator !=(Option<T>? a, T b)
         {
-            return !(a == b);
+            return !(a == b!);
         }
     }
 }

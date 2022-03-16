@@ -16,7 +16,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Collections
                 .ToList();
         }
 
-        public static bool ContainsAny<T>(this IEnumerable<T> list, IEnumerable<T> otherList)
+        public static bool ContainsAny<T>(this IEnumerable<T> list, IEnumerable<T>? otherList)
         {
             if (otherList == null)
             {

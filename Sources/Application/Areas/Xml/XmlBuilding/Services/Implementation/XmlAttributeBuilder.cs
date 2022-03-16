@@ -30,7 +30,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
                 return _xmlElementBuilder;
             }
 
-            var xmlAttribute = new XAttribute(_attributeName, _value);
+            var xmlAttribute = new XAttribute(_attributeName, _value!);
             _element.Add(xmlAttribute);
 
             return _xmlElementBuilder;

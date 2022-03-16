@@ -45,7 +45,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 
         public abstract bool Equals(T other);
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj))
             {
@@ -72,14 +72,14 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 
         public abstract T Reduce(T whenNone);
 
-        public static bool operator ==(Maybe<T> a, Maybe<T> b)
+        public static bool operator ==(Maybe<T>? a, Maybe<T>? b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
             {
                 return true;
             }
 
-            if (!ReferenceEquals(null, a) && a.Equals(b))
+            if (!ReferenceEquals(null, a) && !ReferenceEquals(null, b) && a.Equals(b))
             {
                 return true;
             }
@@ -87,7 +87,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
             return false;
         }
 
-        public static bool operator ==(Maybe<T> a, T b)
+        public static bool operator ==(Maybe<T>? a, T b)
         {
             return !ReferenceEquals(null, a) && a.Equals(b);
         }
@@ -109,7 +109,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 
         public static bool operator !=(Maybe<T> a, T b)
         {
-            return !(a == b);
+            return !(a == b!);
         }
     }
 }

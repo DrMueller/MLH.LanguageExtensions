@@ -7,7 +7,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
 {
     public static class DeepCopyService
     {
-        private static readonly MethodInfo? _cloneMethod = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo? CloneMethod = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
 
         public static T DeepCopy<T>(T source)
         {
@@ -72,7 +72,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.DeepCopying
                 return null;
             }
 
-            var cloneObject = _cloneMethod!.Invoke(originalObject, null);
+            var cloneObject = CloneMethod!.Invoke(originalObject, null);
 
             if (typeToReflect.IsArray)
             {

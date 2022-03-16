@@ -47,22 +47,18 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Cryptography
             var rgb = new Rfc2898DeriveBytes(password, Encoding.Unicode.GetBytes(salt));
 #pragma warning restore CA5379 // Do Not Use Weak Key Derivation Function Algorithm
 
-            using (var algorithm = new T())
+            using var algorithm = new T();
+            var rgbKey = rgb.GetBytes(algorithm.KeySize >> 3);
+            var rgbIv = rgb.GetBytes(algorithm.BlockSize >> 3);
+            var transform = createCryptoCallback(algorithm, rgbKey, rgbIv);
+
+            using var buffer = new MemoryStream();
+            using (var stream = new CryptoStream(buffer, transform, CryptoStreamMode.Write))
             {
-                var rgbKey = rgb.GetBytes(algorithm.KeySize >> 3);
-                var rgbIv = rgb.GetBytes(algorithm.BlockSize >> 3);
-                var transform = createCryptoCallback(algorithm, rgbKey, rgbIv);
-
-                using (var buffer = new MemoryStream())
-                {
-                    using (var stream = new CryptoStream(buffer, transform, CryptoStreamMode.Write))
-                    {
-                        stream.Write(value, 0, value.Length);
-                    }
-
-                    return buffer.ToArray();
-                }
+                stream.Write(value, 0, value.Length);
             }
+
+            return buffer.ToArray();
         }
     }
 }

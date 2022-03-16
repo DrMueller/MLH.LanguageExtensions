@@ -12,7 +12,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Assemblies.Extensions
             var result = Uri.UnescapeDataString(uri.Path);
             result = Path.GetDirectoryName(result);
 
-            return result;
+            return result!;
         }
     }
 }
