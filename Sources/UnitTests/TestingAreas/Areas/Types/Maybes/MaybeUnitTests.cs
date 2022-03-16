@@ -1,5 +1,4 @@
-﻿using System;
-using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 using NUnit.Framework;
 

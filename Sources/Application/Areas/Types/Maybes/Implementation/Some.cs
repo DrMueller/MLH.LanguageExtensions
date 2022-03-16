@@ -1,5 +1,4 @@
 ﻿using System;
-using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 {
@@ -25,7 +24,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
         public bool Equals(Some<T>? other)
         {
             return !ReferenceEquals(null, other) &&
-                ContentEquals(other._content);
+                   ContentEquals(other._content);
         }
 
         public override TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone)
@@ -60,15 +59,9 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 
         private bool ContentEquals(T other)
         {
-            if (ReferenceEquals(null, _content) && ReferenceEquals(null, other))
-            {
-                return true;
-            }
+            if (ReferenceEquals(null, _content) && ReferenceEquals(null, other)) return true;
 
-            if (!ReferenceEquals(null, _content) && _content.Equals(other))
-            {
-                return true;
-            }
+            if (!ReferenceEquals(null, _content) && _content.Equals(other)) return true;
 
             return false;
         }
