@@ -59,9 +59,15 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 
         private bool ContentEquals(T other)
         {
-            if (ReferenceEquals(null, _content) && ReferenceEquals(null, other)) return true;
+            if (ReferenceEquals(null, _content) && ReferenceEquals(null, other))
+            {
+                return true;
+            }
 
-            if (!ReferenceEquals(null, _content) && _content.Equals(other)) return true;
+            if (!ReferenceEquals(null, _content) && _content.Equals(other))
+            {
+                return true;
+            }
 
             return false;
         }
