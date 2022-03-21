@@ -19,8 +19,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Cryptography
             const string Salt = "Salt";
 
             // Act & Assert
-            var actualEncryptedBytes = bytes.Encrypt<RijndaelManaged>(Password, Salt);
-            Assert.Throws<CryptographicException>(() => actualEncryptedBytes.Decrypt<RijndaelManaged>(Password + "tra", Salt));
+            var aes = Aes.Create();
+
+            var actualEncryptedBytes = bytes.Encrypt(aes, Password, Salt);
+            Assert.Throws<CryptographicException>(() => actualEncryptedBytes.Decrypt(aes, Password + "tra", Salt));
         }
 
         [Test]
@@ -34,8 +36,9 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Cryptography
             const string Salt = "Salt";
 
             // Act & Assert
-            var actualEncryptedBytes = bytes.Encrypt<RijndaelManaged>(Password, Salt);
-            Assert.Throws<CryptographicException>(() => actualEncryptedBytes.Decrypt<RijndaelManaged>(Password, Salt + "tra"));
+            var aes = Aes.Create();
+            var actualEncryptedBytes = bytes.Encrypt(aes, Password, Salt);
+            Assert.Throws<CryptographicException>(() => actualEncryptedBytes.Decrypt(aes, Password, Salt + "tra"));
         }
 
         [Test]
@@ -49,8 +52,9 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Cryptography
             const string Salt = "Salt";
 
             // Act
-            var actualEncryptedBytes = bytes.Encrypt<RijndaelManaged>(Password, Salt);
-            var actualDecryptedBytes = actualEncryptedBytes.Decrypt<RijndaelManaged>(Password, Salt);
+            var algo = Aes.Create();
+            var actualEncryptedBytes = bytes.Encrypt(algo, Password, Salt);
+            var actualDecryptedBytes = actualEncryptedBytes.Decrypt(algo, Password, Salt);
 
             // Assert
             var actualString = Encoding.ASCII.GetString(actualDecryptedBytes);

@@ -60,7 +60,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
             var stringNumber = Number.ToString();
 
             // Act
-            var actualInt = stringNumber.Map(f => int.Parse(stringNumber));
+            var actualInt = stringNumber.Map(_ => int.Parse(stringNumber));
 
             // Assert
             Assert.AreEqual(Number, actualInt);
@@ -102,7 +102,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
 
             // Act
             var actualNumber = Number.Tee(
-                f =>
+                _ =>
                 {
                 });
 

@@ -53,7 +53,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Eithers
             // Act
             var actualValue = right
                 .MapRight(num => num + IntValue)
-                .Reduce(f => 1);
+                .Reduce(_ => 1);
 
             // Assert
             Assert.AreEqual(ExpectedIntValue, actualValue);
@@ -94,7 +94,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Eithers
             Either<string, int> right = IntValue;
 
             // Act
-            var valueValue = right.Reduce(f => 1);
+            var valueValue = right.Reduce(_ => 1);
 
             // Assert
             Assert.AreEqual(IntValue, valueValue);
