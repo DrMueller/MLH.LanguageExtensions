@@ -25,8 +25,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
     [SuppressMessage(
         "StyleCop.CSharp.MaintainabilityRules",
         "SA1402:FileMayOnlyContainASingleClass",
-        Justification =
-            "It makes sense to keep these Classes together")]
+        Justification = "It makes sense to keep these Classes together")]
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
         public static Maybe<T> ToMaybe(T value)

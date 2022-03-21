@@ -23,8 +23,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementati
         [SuppressMessage(
             "Microsoft.Usage",
             "SA1119:StatementMustNotUseUnnecessaryParenthesis",
-            Justification =
-                "Actually needed")]
+            Justification = "Actually needed")]
         public IXmlElementBuilder BuildElement()
         {
             if (_condition != null && !_condition.CheckIfSatisfiedBy(_value))

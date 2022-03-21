@@ -43,8 +43,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults
     [SuppressMessage(
         "Microsoft.Usage",
         "SA1402:FileMayOnlyContainASingleType",
-        Justification =
-            "It makes sense to keep these Classes together")]
+        Justification = "It makes sense to keep these Classes together")]
     public class FunctionResult<T> : FunctionResult
     {
         public FunctionResult(bool isSuccess, T value)

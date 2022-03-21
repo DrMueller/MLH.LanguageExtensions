@@ -20,8 +20,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Options
     [SuppressMessage(
         "StyleCop.CSharp.MaintainabilityRules",
         "SA1402:FileMayOnlyContainASingleClass",
-        Justification =
-            "It makes sense to keep these Classes together")]
+        Justification = "It makes sense to keep these Classes together")]
     public abstract class Option<T> : IEquatable<Option<T>>, IEquatable<T>
     {
         public abstract bool IsApplicable { get; }
