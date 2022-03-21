@@ -46,8 +46,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
         [SuppressMessage(
             "Microsoft.Design",
             "CA1031:DoNotCatchGeneralExceptionTypes",
-            Justification =
-                "Expected Exception for test")]
+            Justification = "Expected Exception for test")]
         [Test]
         public void CreatingFromDateTime_DateTimeBeingUnspecified_ThrowsException()
         {
