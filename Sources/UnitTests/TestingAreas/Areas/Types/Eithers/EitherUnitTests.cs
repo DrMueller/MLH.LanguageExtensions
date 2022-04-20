@@ -35,7 +35,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Eithers
             Either<string, int> right = String;
 
             // Act
-            var actualLeft = right.MapRight(num => num + 123);
+            var actualLeft = right.Map(num => num + 123);
 
             // Assert
             Assert.IsInstanceOf<Left<string, int>>(actualLeft);
@@ -52,7 +52,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Eithers
 
             // Act
             var actualValue = right
-                .MapRight(num => num + IntValue)
+                .Map(num => num + IntValue)
                 .Reduce(_ => 1);
 
             // Assert
@@ -66,7 +66,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Eithers
             Either<string, int> right = 123;
 
             // Act
-            var actualNewRight = right.MapRight(num => num.ToString());
+            var actualNewRight = right.Map(num => num.ToString());
 
             // Assert
             Assert.IsInstanceOf<Right<string, string>>(actualNewRight);

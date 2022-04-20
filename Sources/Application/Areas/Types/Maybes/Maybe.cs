@@ -35,9 +35,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 
         public static T ToT(Maybe<T> maybe)
         {
-            return maybe.Evaluate(
-                value => value,
-                () => default!);
+            return maybe.Reduce(() => default!);
         }
 
         public abstract bool Equals(Maybe<T> other);
@@ -59,17 +57,11 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
             return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
         }
 
-        public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
-
-        public abstract void Evaluate(Action<T>? whenSome = null, Action? whenNone = null);
-
         public abstract override int GetHashCode();
 
         public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
 
         public abstract T Reduce(Func<T> whenNone);
-
-        public abstract T Reduce(T whenNone);
 
         public static bool operator ==(Maybe<T>? a, Maybe<T>? b)
         {

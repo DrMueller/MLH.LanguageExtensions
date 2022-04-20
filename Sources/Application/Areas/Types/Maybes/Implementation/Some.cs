@@ -24,17 +24,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
         public bool Equals(Some<T>? other)
         {
             return !ReferenceEquals(null, other) &&
-                   ContentEquals(other._content);
-        }
-
-        public override TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone)
-        {
-            return whenSome(_content);
-        }
-
-        public override void Evaluate(Action<T>? whenSome = null, Action? whenNone = null)
-        {
-            whenSome?.Invoke(_content);
+                ContentEquals(other._content);
         }
 
         public override int GetHashCode()
@@ -48,11 +38,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
         }
 
         public override T Reduce(Func<T> whenNone)
-        {
-            return _content;
-        }
-
-        public override T Reduce(T whenNone)
         {
             return _content;
         }

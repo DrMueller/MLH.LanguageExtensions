@@ -114,57 +114,5 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
             // Assert
             Assert.That(actualSomeMaybe, Is.TypeOf<Some<object>>());
         }
-
-        [Test]
-        public void EvaluatingMaybe_BeingNoneMaybe_EvaluatesToNoneAction()
-        {
-            // Arrange
-            var noneMaybe = Maybe.CreateNone<object>();
-            var noneMethodWasCalled = false;
-            var someMethodWasCalled = false;
-
-            void NoneCallback()
-            {
-                noneMethodWasCalled = true;
-            }
-
-            void SomeCallback(object obj)
-            {
-                someMethodWasCalled = true;
-            }
-
-            // Act
-            noneMaybe.Evaluate(SomeCallback, NoneCallback);
-
-            // Assert
-            Assert.IsTrue(noneMethodWasCalled);
-            Assert.IsFalse(someMethodWasCalled);
-        }
-
-        [Test]
-        public void EvaluatingMaybe_BeingSomeMaybe_EvaluatesToSomeAction()
-        {
-            // Arrange
-            var someMaybe = Maybe.CreateSome(new object());
-            var noneMethodWasCalled = false;
-            var someMethodWasCalled = false;
-
-            void NoneCallback()
-            {
-                noneMethodWasCalled = true;
-            }
-
-            void SomeCallback(object obj)
-            {
-                someMethodWasCalled = true;
-            }
-
-            // Act
-            someMaybe.Evaluate(SomeCallback, NoneCallback);
-
-            // Assert
-            Assert.IsFalse(noneMethodWasCalled);
-            Assert.IsTrue(someMethodWasCalled);
-        }
     }
 }

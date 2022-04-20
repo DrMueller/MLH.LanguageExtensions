@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers.Implementation
+﻿namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers.Implementation
 {
     public class Right<TLeft, TRight> : Either<TLeft, TRight>
     {
@@ -10,16 +8,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers.Implementation
         }
 
         public TRight Content { get; }
-
-        public override Either<TLeft, TNewRight> MapRight<TNewRight>(Func<TRight, TNewRight> map)
-        {
-            return map(Content);
-        }
-
-        public override TRight Reduce(Func<TLeft, TRight> leftMap)
-        {
-            return Content;
-        }
 
         public TRight ToTRight()
         {

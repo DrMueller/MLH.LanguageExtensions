@@ -19,16 +19,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
             return !ReferenceEquals(null, other);
         }
 
-        public override TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone)
-        {
-            return whenNone();
-        }
-
-        public override void Evaluate(Action<T>? whenSome = null, Action? whenNone = null)
-        {
-            whenNone?.Invoke();
-        }
-
         public override int GetHashCode()
         {
             return 0;
@@ -42,11 +32,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
         public override T Reduce(Func<T> whenNone)
         {
             return whenNone();
-        }
-
-        public override T Reduce(T whenNone)
-        {
-            return whenNone;
         }
     }
 }
