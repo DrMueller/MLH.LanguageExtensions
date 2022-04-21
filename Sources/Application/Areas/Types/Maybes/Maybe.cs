@@ -28,37 +28,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         Justification = "It makes sense to keep these Classes together")]
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
-        public static Maybe<T> ToMaybe(T value)
-        {
-            return new Some<T>(value);
-        }
-
-        public static T ToT(Maybe<T> maybe)
-        {
-            return maybe.Reduce(() => default!);
-        }
-
-        public abstract bool Equals(Maybe<T> other);
-
-        public abstract bool Equals(T other);
-
-        public override bool Equals(object? obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
-        }
-
-        public abstract override int GetHashCode();
-
         public static bool operator ==(Maybe<T>? a, Maybe<T>? b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
@@ -98,5 +67,36 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         {
             return !(a == b!);
         }
+
+        public static Maybe<T> ToMaybe(T value)
+        {
+            return new Some<T>(value);
+        }
+
+        public static T ToT(Maybe<T> maybe)
+        {
+            return maybe.Reduce(() => default!);
+        }
+
+        public abstract bool Equals(Maybe<T> other);
+
+        public abstract bool Equals(T other);
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
+        }
+
+        public abstract override int GetHashCode();
     }
 }
