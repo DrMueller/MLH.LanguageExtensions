@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Threading.Tasks;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 using Xunit;
@@ -172,6 +173,36 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
 
             // Act
             var actualValue = someMaybe.Reduce(() => "tra");
+
+            // Assert
+            actualValue.Should().Be(InitialValue);
+        }
+
+        [Fact]
+        public async Task ReducingAsync_MaybeBeingNone_ReturnsCallbackValue()
+        {
+            // Arrange
+            const string CallbackValue = "1234";
+
+            var someMaybe = Maybe.CreateNone<string>();
+
+            // Act
+            var actualValue = await someMaybe.ReduceAsync(() => Task.FromResult(CallbackValue));
+
+            // Assert
+            actualValue.Should().Be(CallbackValue);
+        }
+
+        [Fact]
+        public void ReducingAsync_MaybeBeingSome_ReturnsValue()
+        {
+            // Arrange
+            const string InitialValue = "1234";
+
+            var someMaybe = Maybe.CreateSome(InitialValue);
+
+            // Act
+            var actualValue = someMaybe.ReduceAsync(() => Task.FromResult("tra"));
 
             // Assert
             actualValue.Should().Be(InitialValue);
