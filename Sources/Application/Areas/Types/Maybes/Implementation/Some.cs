@@ -4,6 +4,11 @@
     {
         private readonly T _content;
 
+        public static implicit operator T(Some<T> value)
+        {
+            return value._content;
+        }
+
         public Some(T content)
         {
             _content = content;

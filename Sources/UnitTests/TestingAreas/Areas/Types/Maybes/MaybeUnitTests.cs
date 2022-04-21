@@ -9,30 +9,17 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
     public class MaybeUnitTests
     {
         [Fact]
-        public void Casting_MaybeBeingSome_CastsToValue()
+        public void CastingSome_CastsToValue()
         {
             // Arrange
             const string Str = "Test";
-            var actualSome = Maybe.CreateSome(Str);
+            var actualSome = new Some<string>(Str);
 
             // Act
             string actualString = actualSome;
 
             // Assert
             actualString.Should().Be(Str);
-        }
-
-        [Fact]
-        public void CastingNone_CastsToNull()
-        {
-            // Arrange
-            var actualNoneMaybe = Maybe.CreateNone<object>();
-
-            // Act
-            var actualObject = Maybe<object>.ToT(actualNoneMaybe);
-
-            // Assert
-            actualObject.Should().BeNull();
         }
 
         [Fact]
@@ -66,8 +53,8 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
         public void ComparingMaybes_OneBeingNoneOneBeingSome_ReturnsFalse()
         {
             // Arrange
-            var none = Maybe.CreateNone<object>();
-            var some = Maybe.CreateSome(new object());
+            var none = Maybe.CreateNone<string>();
+            Maybe<string> some = "tra";
 
             // Act
             var areEqual = none == some;
@@ -107,16 +94,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
         }
 
         [Fact]
-        public void CreatingSomeMaybe_CreatesSomeMaybe()
-        {
-            // Act
-            var actualSomeMaybe = Maybe.CreateSome(new object());
-
-            // Assert
-            actualSomeMaybe.Should().BeOfType<Some<object>>();
-        }
-
-        [Fact]
         public void Mapping_MaybeBeingNone_ReturnsSameNone()
         {
             // Arrange
@@ -135,14 +112,14 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
             // Arrange
             const string InitialValue = "1234";
 
-            var someMaybe = Maybe.CreateSome(InitialValue);
+            Maybe<string> someMaybe = InitialValue;
 
             // Act
             var actualMaybe = someMaybe.Map(int.Parse);
 
             // Assert
             actualMaybe.Should().BeOfType(typeof(Some<int>));
-            var actualValue = (int)actualMaybe;
+            var actualValue = (int)(Some<int>)actualMaybe;
 
             var expectedValue = int.Parse(InitialValue);
             actualValue.Should().Be(expectedValue);
@@ -169,7 +146,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
             // Arrange
             const string InitialValue = "1234";
 
-            var someMaybe = Maybe.CreateSome(InitialValue);
+            Maybe<string> someMaybe = InitialValue;
 
             // Act
             var actualValue = someMaybe.Reduce(() => "tra");
@@ -194,15 +171,15 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
         }
 
         [Fact]
-        public void ReducingAsync_MaybeBeingSome_ReturnsValue()
+        public async Task ReducingAsync_MaybeBeingSome_ReturnsValue()
         {
             // Arrange
             const string InitialValue = "1234";
 
-            var someMaybe = Maybe.CreateSome(InitialValue);
+            Maybe<string> someMaybe = InitialValue;
 
             // Act
-            var actualValue = someMaybe.ReduceAsync(() => Task.FromResult("tra"));
+            var actualValue = await someMaybe.ReduceAsync(() => Task.FromResult("tra"));
 
             // Assert
             actualValue.Should().Be(InitialValue);

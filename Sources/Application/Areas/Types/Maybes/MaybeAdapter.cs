@@ -10,10 +10,10 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         {
             if (maybe is None<T>)
             {
-                return Maybe.CreateNone<TNew>();
+                return None.Value;
             }
 
-            var someValue = (T)maybe;
+            var someValue = (Some<T>)maybe;
 
             return map(someValue);
         }
@@ -27,7 +27,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
                 return whenNone();
             }
 
-            return maybe;
+            return (Some<T>)maybe;
         }
 
         public static async Task<T> ReduceAsync<T>(
@@ -39,7 +39,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
                 return await whenNone();
             }
 
-            return maybe;
+            return (Some<T>)maybe;
         }
     }
 }

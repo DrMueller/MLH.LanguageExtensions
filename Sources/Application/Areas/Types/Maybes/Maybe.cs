@@ -8,17 +8,12 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
     {
         public static Maybe<T> CreateFromNullable<T>(T possiblyNull)
         {
-            return possiblyNull == null ? CreateNone<T>() : CreateSome(possiblyNull);
+            return possiblyNull == null ? CreateNone<T>() : possiblyNull;
         }
 
         public static Maybe<T> CreateNone<T>()
         {
             return new None<T>();
-        }
-
-        public static Maybe<T> CreateSome<T>(T value)
-        {
-            return new Some<T>(value);
         }
     }
 
@@ -50,12 +45,13 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 
         public static implicit operator Maybe<T>(T value)
         {
-            return ToMaybe(value);
+            return new Some<T>(value);
         }
 
-        public static implicit operator T(Maybe<T> maybe)
+        // ReSharper disable once UnusedParameter.Global
+        public static implicit operator Maybe<T>(None none)
         {
-            return ToT(maybe);
+            return new None<T>();
         }
 
         public static bool operator !=(Maybe<T> a, Maybe<T> b)
@@ -66,16 +62,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
         public static bool operator !=(Maybe<T> a, T b)
         {
             return !(a == b!);
-        }
-
-        public static Maybe<T> ToMaybe(T value)
-        {
-            return new Some<T>(value);
-        }
-
-        public static T ToT(Maybe<T> maybe)
-        {
-            return maybe.Reduce(() => default!);
         }
 
         public abstract bool Equals(Maybe<T> other);

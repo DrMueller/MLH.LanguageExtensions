@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Enums
 {
@@ -53,7 +54,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Enums
             // Note that Enum.TryParse only returns false if unable to convert the value, not if the value isn't defined as an underlying enum value.
             var isValidEnum = parseResult && Enum.IsDefined(typeof(TEnum), result);
 
-            return isValidEnum ? Maybe.CreateSome(result) : Maybe.CreateNone<TEnum>();
+            return isValidEnum ? result : Maybe.CreateNone<TEnum>();
         }
     }
 }
