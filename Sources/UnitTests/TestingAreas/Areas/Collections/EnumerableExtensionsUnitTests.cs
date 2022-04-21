@@ -266,9 +266,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
         }
 
         [Fact]
-#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
         public async Task SelectAsync_ExecutesTasks_OneAfterAnother()
-#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
         {
             // Arrange
             var newList = new List<int>();
