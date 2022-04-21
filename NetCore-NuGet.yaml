@@ -1,4 +1,4 @@
-name: 2.3$(rev:.r) # build numbering format
+name: 2.4$(rev:.r) # build numbering format
 
 variables:
   BuildConfiguration: 'Release'
