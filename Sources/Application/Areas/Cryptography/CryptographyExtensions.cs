@@ -55,6 +55,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Cryptography
             var transform = createCryptoCallback(algo, rgbKey, rgbIv);
 
             using var buffer = new MemoryStream();
+
             using (var stream = new CryptoStream(buffer, transform, CryptoStreamMode.Write))
             {
                 stream.Write(value, 0, value.Length);

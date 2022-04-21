@@ -1,13 +1,13 @@
 ﻿using System;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Functional;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
 {
-    [TestFixture]
     public class FunctionalExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void ApplyingOnePartial_AppliesPartial()
         {
             // Arrange
@@ -19,10 +19,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
 
             // Assert
             var actualResult = actualPartiallyApplied();
-            Assert.AreEqual(ExpectedAddResult, actualResult);
+            actualResult.Should().Be(ExpectedAddResult);
         }
 
-        [Test]
+        [Fact]
         public void ApplyingTwoParamsPartial_AppliesPartial()
         {
             // Arrange
@@ -34,10 +34,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
 
             // Assert
             var actualResult = actualPartiallyApplied(3);
-            Assert.AreEqual(ExpectedAddResult, actualResult);
+            actualResult.Should().Be(ExpectedAddResult);
         }
 
-        [Test]
+        [Fact]
         public void Mapping_CallbackBeingNull_Throws()
         {
             // Arrange
@@ -52,7 +52,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
                 });
         }
 
-        [Test]
+        [Fact]
         public void Mapping_WithCallback_Maps()
         {
             // Arrange
@@ -63,10 +63,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
             var actualInt = stringNumber.Map(_ => int.Parse(stringNumber));
 
             // Assert
-            Assert.AreEqual(Number, actualInt);
+            actualInt.Should().Be(Number);
         }
 
-        [Test]
+        [Fact]
         public void Teeing_CallbackBeingNull_Throws()
         {
             // Arrange
@@ -80,7 +80,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
                 });
         }
 
-        [Test]
+        [Fact]
         public void Teeing_WithCallback_ExecutesCallback_WithpassedObject()
         {
             // Arrange
@@ -91,10 +91,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
             Number.Tee(num => actualNumber = num);
 
             // Assert
-            Assert.AreEqual(Number, actualNumber);
+            actualNumber.Should().Be(Number);
         }
 
-        [Test]
+        [Fact]
         public void Teeing_WithCallback_ReturnsSameObject()
         {
             // Arrange
@@ -107,7 +107,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Functional
                 });
 
             // Assert
-            Assert.AreEqual(Number, actualNumber);
+            actualNumber.Should().Be(Number);
         }
     }
 }

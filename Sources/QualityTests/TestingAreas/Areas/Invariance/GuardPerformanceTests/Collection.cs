@@ -2,17 +2,24 @@
 using System.Diagnostics;
 using System.Linq;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
-using NUnit.Framework;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace Mmu.Mlh.LanguageExtensions.QualityTests.TestingAreas.Areas.Invariance.GuardPerformanceTests
 {
-    [TestFixture]
     public class Collection
     {
+        private readonly ITestOutputHelper _testOutputHelper;
+
         private const int AmountOfRuns = 1000;
         private const int CollectionSize = 200;
 
-        [Test]
+        public Collection(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+        }
+
+        [Fact]
         public void Performance_Guard()
         {
             var collection = Enumerable.Range(1, CollectionSize).Select(i => i.ToString()).ToList();
@@ -24,10 +31,10 @@ namespace Mmu.Mlh.LanguageExtensions.QualityTests.TestingAreas.Areas.Invariance.
             }
 
             stopwatch.Stop();
-            Console.WriteLine($"Performance_Guard: {stopwatch.Elapsed.Seconds} seconds");
+            _testOutputHelper.WriteLine($"Performance_Guard: {stopwatch.Elapsed.Seconds} seconds");
         }
 
-        [Test]
+        [Fact]
         public void Performance_Native()
         {
             var collection = Enumerable.Range(1, CollectionSize).Select(i => i.ToString()).ToList();

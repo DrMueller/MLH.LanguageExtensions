@@ -1,15 +1,15 @@
 ﻿using System;
 using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Objects;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
 {
-    [TestFixture]
     public class ObjectExtensionsUnitTests
     {
-        [TestCase("")]
-        [TestCase(null)]
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
         public void CheckIfAllPropertiesAreSet_StringBeingNullOrEmpty_ReturnsFalse(string str)
         {
             // Arrange
@@ -27,7 +27,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
             actualAllFieldsAreSet.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void CheckIfAllPropertiesAreSet_IntBeing0_ReturnsFalse()
         {
             // Arrange
@@ -45,7 +45,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
             actualAllFieldsAreSet.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void CheckIfAllPropertiesAreSet_IntNotBeing0_ReturnsTrue()
         {
             // Arrange
@@ -63,7 +63,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
             actualAllFieldsAreSet.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void CheckIfAllPropertiesAreSet_NullableBeing0_ReturnsFalse()
         {
             // Arrange
@@ -81,7 +81,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
             actualAllFieldsAreSet.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void CheckIfAllPropertiesAreSet_NullableBeing1_ReturnsTrue()
         {
             // Arrange
@@ -99,7 +99,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
             actualAllFieldsAreSet.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void CheckIfAllPropertiesAreSet_NullableBeingNull_ReturnsFalse()
         {
             // Arrange
@@ -117,7 +117,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Objects
             actualAllFieldsAreSet.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void CheckIfAllPropertiesAreSet_StringNotBeingNullOrEmpty_ReturnsTrue()
         {
             // Arrange

@@ -1,13 +1,13 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions;
+﻿using FluentAssertions;
+using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Extensions;
 using Mmu.Mlh.LanguageExtensions.UnitTests.TestingInfrastructure.Areas.Reflection.TestModels;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Extensions
 {
-    [TestFixture]
     public class PropertyExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void GetPropertyInfo_GetsPropertyInfo()
         {
             // Arrange
@@ -18,7 +18,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ext
             var actualPropertyInfo = individual.GetPropertyInfo(f => f.FirstName);
 
             // Assert
-            Assert.AreEqual(expectedPropertyInfo, actualPropertyInfo);
+            actualPropertyInfo.Should().BeSameAs(expectedPropertyInfo);
         }
     }
 }

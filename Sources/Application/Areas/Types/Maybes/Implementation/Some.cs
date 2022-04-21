@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
+﻿namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 {
     public class Some<T> : Maybe<T>
     {
@@ -30,16 +28,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
         public override int GetHashCode()
         {
             return _content!.GetHashCode();
-        }
-
-        public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping)
-        {
-            return new Some<TNew>(mapping(_content));
-        }
-
-        public override T Reduce(Func<T> whenNone)
-        {
-            return _content;
         }
 
         private bool ContentEquals(T other)

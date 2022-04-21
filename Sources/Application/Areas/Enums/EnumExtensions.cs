@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Enums
 {
@@ -39,7 +40,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Enums
             return Enum.GetValues(typeof(T)).Cast<T>();
         }
 
-        public static bool TryParse<TEnum>(int value, out TEnum result)
+        public static Maybe<TEnum> TryParse<TEnum>(int value)
             where TEnum : struct, IConvertible
         {
             if (!typeof(TEnum).IsEnum)
@@ -47,8 +48,12 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Enums
                 throw new ArgumentException($"TEnum ({typeof(TEnum).Name}) is not an enumeration type.");
             }
 
+            var parseResult = Enum.TryParse<TEnum>(value.ToString(), out var result);
+
             // Note that Enum.TryParse only returns false if unable to convert the value, not if the value isn't defined as an underlying enum value.
-            return Enum.TryParse(value.ToString(), out result) && Enum.IsDefined(typeof(TEnum), value);
+            var isValidEnum = parseResult && Enum.IsDefined(typeof(TEnum), result);
+
+            return isValidEnum ? Maybe.CreateSome(result) : Maybe.CreateNone<TEnum>();
         }
     }
 }

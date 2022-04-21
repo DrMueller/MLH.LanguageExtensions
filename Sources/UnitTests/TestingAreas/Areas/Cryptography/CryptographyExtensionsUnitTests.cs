@@ -1,14 +1,14 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Cryptography;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Cryptography
 {
-    [TestFixture]
     public class CryptographyExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void Encrypting_and_decrypting_with_different_password_throws_Exception()
         {
             // Arrange
@@ -25,7 +25,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Cryptography
             Assert.Throws<CryptographicException>(() => actualEncryptedBytes.Decrypt(aes, Password + "tra", Salt));
         }
 
-        [Test]
+        [Fact]
         public void Encrypting_and_decrypting_with_different_salt_throws_Exception()
         {
             // Arrange
@@ -38,10 +38,12 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Cryptography
             // Act & Assert
             var aes = Aes.Create();
             var actualEncryptedBytes = bytes.Encrypt(aes, Password, Salt);
-            Assert.Throws<CryptographicException>(() => actualEncryptedBytes.Decrypt(aes, Password, Salt + "tra"));
+
+            var act = () => actualEncryptedBytes.Decrypt(aes, Password, Salt + "tra");
+            act.Should().ThrowExactly<CryptographicException>();
         }
 
-        [Test]
+        [Fact]
         public void Encrypting_and_decrypting_with_same_password_and_salt_returns_same_result()
         {
             // Arrange
@@ -58,7 +60,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Cryptography
 
             // Assert
             var actualString = Encoding.ASCII.GetString(actualDecryptedBytes);
-            Assert.AreEqual(String, actualString);
+            actualString.Should().Be(String);
         }
     }
 }

@@ -7,7 +7,7 @@
             Content = content;
         }
 
-        public TLeft Content { get; }
+        private TLeft Content { get; }
 
         public TLeft ToTLeft()
         {

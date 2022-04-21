@@ -1,13 +1,13 @@
 ﻿using System;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Assemblies.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Assemblies.Extensions
 {
-    [TestFixture]
     public class AssemblyExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void GettingAssemblyBasePath_GetsValidPath()
         {
             // Arrange
@@ -18,7 +18,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Assemblies.Ext
 
             // Assert
             var isValidUri = Uri.TryCreate(actualAssemblyPath, UriKind.Absolute, out _);
-            Assert.IsTrue(isValidUri);
+            isValidUri.Should().BeTrue();
         }
     }
 }

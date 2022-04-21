@@ -1,13 +1,13 @@
 ﻿using System;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Exceptions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Exceptions
 {
-    [TestFixture]
     public class ExceptionExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void GettingMostInnerException_WithInnerExceptions_ReturnsMostInnerOne()
         {
             // Arrange
@@ -19,10 +19,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Exceptions
             var actualMostInnerException = topLevelException.GetMostInnerException();
 
             // Assert
-            Assert.AreEqual(mostInnerException, actualMostInnerException);
+            actualMostInnerException.Should().Be(mostInnerException);
         }
 
-        [Test]
+        [Fact]
         public void GettingMostInnerException_WithoutInnerExceptions_ReturnsException()
         {
             // Arrange
@@ -32,7 +32,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Exceptions
             var actualMostInnerException = exceptionWithoutInners.GetMostInnerException();
 
             // Assert
-            Assert.AreEqual(exceptionWithoutInners, actualMostInnerException);
+            actualMostInnerException.Should().Be(exceptionWithoutInners);
         }
     }
 }

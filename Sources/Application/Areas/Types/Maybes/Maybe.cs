@@ -59,10 +59,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes
 
         public abstract override int GetHashCode();
 
-        public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
-
-        public abstract T Reduce(Func<T> whenNone);
-
         public static bool operator ==(Maybe<T>? a, Maybe<T>? b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))

@@ -1,13 +1,13 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Types.Options;
+﻿using FluentAssertions;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Options;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Options.Implementation;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
 {
-    [TestFixture]
     public class OptionUnitTests
     {
-        [Test]
+        [Fact]
         public void CompaingApplicable_WithContentBeingEqualAndReferenceType_CompatesToTrue()
         {
             // Arrange
@@ -18,10 +18,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
             var areEqual = someObj == applicable;
 
             // Assert
-            Assert.IsTrue(areEqual);
+            areEqual.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void CompaingApplicable_WithContentBeingEqualAndValueType_CompatesToTrue()
         {
             // Arrange
@@ -32,10 +32,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
             var areEqual = applicable == SomeInt;
 
             // Assert
-            Assert.IsTrue(areEqual);
+            areEqual.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void CompaingNotApplicable_WithTreatAsFalse_ComparesToFalse()
         {
             // Arrange
@@ -45,10 +45,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
             var areEqual = notApplicable == 123;
 
             // Assert
-            Assert.IsFalse(areEqual);
+            areEqual.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void CompaingNotApplicable_WithTreatAsTrue_ComparesToTrue()
         {
             // Arrange
@@ -58,27 +58,27 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Options
             var areEqual = notApplicable == 123;
 
             // Assert
-            Assert.IsTrue(areEqual);
+            areEqual.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void CreatingApplicable_CreatesApplicable()
         {
             // Act
             var actualApplicable = Option.CreateApplicable<object>(null!);
 
             // Assert
-            Assert.IsInstanceOf<ApplicableOption<object>>(actualApplicable);
+            actualApplicable.Should().BeOfType<ApplicableOption<object>>();
         }
 
-        [Test]
+        [Fact]
         public void CreatingNotApplicable_CreatesNotApplicable()
         {
             // Act
             var actualNotApplicable = Option.CreateNotApplicable<object>(true);
 
             // Assert
-            Assert.IsInstanceOf<NotApplicableOption<object>>(actualNotApplicable);
+            actualNotApplicable.Should().BeOfType<NotApplicableOption<object>>();
         }
     }
 }

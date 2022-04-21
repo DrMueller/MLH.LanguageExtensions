@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Text;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.StringBuilders;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
 {
-    [TestFixture]
     public class StringBuilderExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void Appending_WithIndentationThree_IndentsWithThreeEmptyCharacters()
         {
             // Arrange
@@ -21,10 +21,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
 
             // Assert
             var actualString = sb.ToString();
-            Assert.AreEqual(ExpectedString, actualString);
+            actualString.Should().Be(ExpectedString);
         }
 
-        [Test]
+        [Fact]
         public void Appending_WithIndentationZero_DoesntIndent()
         {
             // Arrange
@@ -36,10 +36,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
 
             // Assert
             var actualString = sb.ToString();
-            Assert.AreEqual(TestString, actualString);
+            actualString.Should().Be(TestString);
         }
 
-        [Test]
+        [Fact]
         public void AppendingLine_WithIndentationThree_IndentsWithThreeEmptyCharacters()
         {
             // Arrange
@@ -52,10 +52,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
 
             // Assert
             var actualString = sb.ToString();
-            Assert.AreEqual(expectedString, actualString);
+            actualString.Should().Be(expectedString);
         }
 
-        [Test]
+        [Fact]
         public void AppendingLine_WithIndentationZero_DoesntIndent()
         {
             // Arrange
@@ -68,10 +68,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
 
             // Assert
             var actualString = sb.ToString();
-            Assert.AreEqual(expectedString, actualString);
+            actualString.Should().Be(expectedString);
         }
 
-        [Test]
+        [Fact]
         public void AppendingWithSeperator_AppendsSeperator_ExceptLast()
         {
             // Arrange
@@ -91,7 +91,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.StringBuilders
 
             // Assert
             var actualString = sb.ToString();
-            Assert.AreEqual(ExpectedString, actualString);
+            actualString.Should().Be(ExpectedString);
         }
     }
 }

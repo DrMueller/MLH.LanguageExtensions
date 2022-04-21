@@ -1,13 +1,14 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implementation;
-using NUnit.Framework;
+﻿using FluentAssertions;
+using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implementation;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.StringCutting.Services
 {
-    [TestFixture]
     public class StringCutterUnitTests
     {
-        [TestCase(null)]
-        [TestCase("")]
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
         public void Cutting_StringBeingNullOrEmpty_ReturnsEmpty(string str)
         {
             // Arrange
@@ -17,10 +18,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             cutter.Cut(1, out var actualCutString);
 
             // Assert
-            Assert.IsEmpty(actualCutString);
+            actualCutString.Should().BeEmpty();
         }
 
-        [Test]
+        [Fact]
         public void Cutting_RemaingStringBeingSmallerThanCutSize_ReturnsRemainingString_RestBeingEmpty()
         {
             // Arrange
@@ -32,11 +33,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             sut.Cut(1, out var actualRemainingString);
 
             // Assert
-            Assert.AreEqual(Str, actualCutString);
-            Assert.IsEmpty(actualRemainingString);
+            actualCutString.Should().Be(Str);
+            actualRemainingString.Should().BeEmpty();
         }
 
-        [Test]
+        [Fact]
         public void Cutting_RemaingStringBingLargerThanCutSize_ReturnsCutSizeString_AndKeepsRestOfString()
         {
             // Arrange
@@ -48,8 +49,8 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             sut.Cut(1, out var actualRemainingString);
 
             // Assert
-            Assert.AreEqual(Str.Substring(0, Str.Length - 1), actualCutString);
-            Assert.AreEqual(Str.Substring(Str.Length - 1), actualRemainingString);
+            actualCutString.Should().Be(Str.Substring(0, Str.Length - 1));
+            actualRemainingString.Should().Be(Str.Substring(Str.Length - 1));
         }
     }
 }

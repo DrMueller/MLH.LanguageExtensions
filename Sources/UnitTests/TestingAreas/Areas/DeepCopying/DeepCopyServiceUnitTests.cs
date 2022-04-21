@@ -1,13 +1,13 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.DeepCopying;
+﻿using FluentAssertions;
+using Mmu.Mlh.LanguageExtensions.Areas.DeepCopying;
 using Mmu.Mlh.LanguageExtensions.UnitTests.TestingInfrastructure.Areas.DeepCopying;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
 {
-    [TestFixture]
     public class DeepCopyServiceUnitTests
     {
-        [Test]
+        [Fact]
         public void CopyingReferenceType_CreatesNewReference()
         {
             // Arrange
@@ -17,10 +17,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             var actualCopy = DeepCopyService.DeepCopy(model);
 
             // Assert
-            Assert.IsFalse(ReferenceEquals(model, actualCopy));
+            actualCopy.Should().NotBeSameAs(model);
         }
 
-        [Test]
+        [Fact]
         public void CopyingSubReferenceTypes_KeepsValues()
         {
             // Arrange
@@ -32,15 +32,14 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             var actualCopy = DeepCopyService.DeepCopy(model);
 
             // Assert
-            Assert.AreEqual(model.Name, actualCopy.Name);
-            Assert.AreEqual(model.Age, actualCopy.Age);
-            Assert.AreEqual(model.SubModel!.Name, actualCopy.SubModel!.Name);
-            Assert.AreEqual(model.SubModel.Age, actualCopy.SubModel.Age);
-            Assert.AreEqual(model.SubModel!.SubModel!.Name, actualCopy.SubModel!.SubModel!.Name);
-            Assert.AreEqual(model.SubModel.SubModel.Age, actualCopy.SubModel.SubModel.Age);
+            actualCopy.Name.Should().Be(model.Name);
+            actualCopy.SubModel!.Name.Should().Be(model.SubModel!.Name);
+            actualCopy.SubModel.Age.Should().Be(model.SubModel.Age);
+            actualCopy.SubModel!.SubModel!.Name.Should().Be(model.SubModel!.SubModel!.Name);
+            actualCopy.SubModel.SubModel.Age.Should().Be(model.SubModel.SubModel.Age);
         }
 
-        [Test]
+        [Fact]
         public void CopyingValueType_KeepsValue()
         {
             // Arrange
@@ -50,10 +49,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             var actualCopy = DeepCopyService.DeepCopy(Age);
 
             // Assert
-            Assert.AreEqual(Age, actualCopy);
+            actualCopy.Should().Be(Age);
         }
 
-        [Test]
+        [Fact]
         public void RecursivelyCopyingReferenceTypes_CreatesNewReferences()
         {
             // Arrange
@@ -65,8 +64,8 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DeepCopying
             var actualCopy = DeepCopyService.DeepCopy(model);
 
             // Assert
-            Assert.IsFalse(ReferenceEquals(actualCopy.SubModel, model.SubModel));
-            Assert.IsFalse(ReferenceEquals(actualCopy.SubModel!.SubModel, model.SubModel!.SubModel));
+            actualCopy.SubModel.Should().NotBeSameAs(model.SubModel);
+            actualCopy.SubModel!.SubModel.Should().NotBeSameAs(model.SubModel!.SubModel);
         }
     }
 }

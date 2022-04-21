@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
+﻿namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
 {
     public sealed class None<T> : Maybe<T>
     {
@@ -22,16 +20,6 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation
         public override int GetHashCode()
         {
             return 0;
-        }
-
-        public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping)
-        {
-            return new None<TNew>();
-        }
-
-        public override T Reduce(Func<T> whenNone)
-        {
-            return whenNone();
         }
     }
 }

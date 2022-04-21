@@ -1,12 +1,12 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Strings.Extensions;
-using NUnit.Framework;
+﻿using FluentAssertions;
+using Mmu.Mlh.LanguageExtensions.Areas.Strings.Extensions;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.Extensions
 {
-    [TestFixture]
     public class StringExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void AppendIfNotEndingWith_StringDoesEndWithPassed_DoesNotAppend()
         {
             // Arrange
@@ -17,10 +17,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.Extens
             var actual = CurrentString.AppendIfNotEndingWith(PassedString);
 
             // Assert
-            Assert.AreEqual(CurrentString, actual);
+            actual.Should().Be(CurrentString);
         }
 
-        [Test]
+        [Fact]
         public void AppendIfNotEndingWith_StringDoesNotEndWithPassed_DoesAppend()
         {
             // Arrange
@@ -31,8 +31,8 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.Extens
             var actual = CurrentString.AppendIfNotEndingWith(PassedString);
 
             // Assert
-            Assert.AreNotEqual(CurrentString, actual);
-            Assert.AreEqual(CurrentString + PassedString, actual);
+            actual.Should().NotBeEquivalentTo(CurrentString);
+            actual.Should().Be(CurrentString + PassedString);
         }
     }
 }

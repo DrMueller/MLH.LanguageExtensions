@@ -1,27 +1,14 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
+﻿using FluentAssertions;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
 {
-    [TestFixture]
     public class MaybeUnitTests
     {
-        [Test]
-        public void CastingNone_CastsToNull()
-        {
-            // Arrange
-            var actualNoneMaybe = Maybe.CreateNone<object>();
-
-            // Act
-            var actualObject = Maybe<object>.ToT(actualNoneMaybe);
-
-            // Assert
-            Assert.IsNull(actualObject);
-        }
-
-        [Test]
-        public void CastingSome_CastsToValue()
+        [Fact]
+        public void Casting_MaybeBeingSome_CastsToValue()
         {
             // Arrange
             const string Str = "Test";
@@ -31,10 +18,23 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
             string actualString = actualSome;
 
             // Assert
-            Assert.AreEqual(Str, actualString);
+            actualString.Should().Be(Str);
         }
 
-        [Test]
+        [Fact]
+        public void CastingNone_CastsToNull()
+        {
+            // Arrange
+            var actualNoneMaybe = Maybe.CreateNone<object>();
+
+            // Act
+            var actualObject = Maybe<object>.ToT(actualNoneMaybe);
+
+            // Assert
+            actualObject.Should().BeNull();
+        }
+
+        [Fact]
         public void CastingValue_CastsToSome()
         {
             // Arrange
@@ -44,10 +44,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
             Maybe<string> actualMaybe = Str;
 
             // Assert
-            Assert.IsInstanceOf<Some<string>>(actualMaybe);
+            actualMaybe.Should().BeOfType<Some<string>>();
         }
 
-        [Test]
+        [Fact]
         public void ComparingMaybes_BothBeingNone_ReturnsTrue()
         {
             // Arrange
@@ -58,10 +58,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
             var areEqual = none1 == none2;
 
             // Assert
-            Assert.IsTrue(areEqual);
+            areEqual.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void ComparingMaybes_OneBeingNoneOneBeingSome_ReturnsFalse()
         {
             // Arrange
@@ -72,47 +72,109 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Types.Maybes
             var areEqual = none == some;
 
             // Assert
-            Assert.IsFalse(areEqual);
+            areEqual.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void CreatingMaybeFromNullable_WithExistingObjects_CreatesSome()
         {
             // Act
-            var maybe = Maybe.CreateFromNullable(new object());
+            var actualMaybe = Maybe.CreateFromNullable(new object());
 
             // Assert
-            Assert.That(maybe, Is.TypeOf<Some<object>>());
+            actualMaybe.Should().BeOfType<Some<object>>();
         }
 
-        [Test]
+        [Fact]
         public void CreatingMaybeFromNullable_WithNull_CreatesNone()
         {
             // Act
-            var maybe = Maybe.CreateFromNullable<object>(null!);
+            var actualMaybe = Maybe.CreateFromNullable<object>(null!);
 
             // Assert
-            Assert.That(maybe, Is.TypeOf<None<object>>());
+            actualMaybe.Should().BeOfType<None<object>>();
         }
 
-        [Test]
+        [Fact]
         public void CreatingNoneMaybe_CreatesNone()
         {
             // Act
             var actualNoneMaybe = Maybe.CreateNone<object>();
 
             // Assert
-            Assert.That(actualNoneMaybe, Is.TypeOf<None<object>>());
+            actualNoneMaybe.Should().BeOfType<None<object>>();
         }
 
-        [Test]
+        [Fact]
         public void CreatingSomeMaybe_CreatesSomeMaybe()
         {
             // Act
             var actualSomeMaybe = Maybe.CreateSome(new object());
 
             // Assert
-            Assert.That(actualSomeMaybe, Is.TypeOf<Some<object>>());
+            actualSomeMaybe.Should().BeOfType<Some<object>>();
+        }
+
+        [Fact]
+        public void Mapping_MaybeBeingNone_ReturnsSameNone()
+        {
+            // Arrange
+            var noneMaybe = Maybe.CreateNone<object>();
+
+            // Act
+            var actualMaybe = noneMaybe.Map(f => f.ToString());
+
+            // Assert
+            actualMaybe.Should().BeOfType(typeof(None<string>));
+        }
+
+        [Fact]
+        public void Mapping_MaybeBeingSome_ReturnsSome_WithNewMappedValue()
+        {
+            // Arrange
+            const string InitialValue = "1234";
+
+            var someMaybe = Maybe.CreateSome(InitialValue);
+
+            // Act
+            var actualMaybe = someMaybe.Map(int.Parse);
+
+            // Assert
+            actualMaybe.Should().BeOfType(typeof(Some<int>));
+            var actualValue = (int)actualMaybe;
+
+            var expectedValue = int.Parse(InitialValue);
+            actualValue.Should().Be(expectedValue);
+        }
+
+        [Fact]
+        public void Reducing_MaybeBeingNone_ReturnsCallbackValue()
+        {
+            // Arrange
+            const string CallbackValue = "1234";
+
+            var someMaybe = Maybe.CreateNone<string>();
+
+            // Act
+            var actualValue = someMaybe.Reduce(() => CallbackValue);
+
+            // Assert
+            actualValue.Should().Be(CallbackValue);
+        }
+
+        [Fact]
+        public void Reducing_MaybeBeingSome_ReturnsValue()
+        {
+            // Arrange
+            const string InitialValue = "1234";
+
+            var someMaybe = Maybe.CreateSome(InitialValue);
+
+            // Act
+            var actualValue = someMaybe.Reduce(() => "tra");
+
+            // Assert
+            actualValue.Should().Be(InitialValue);
         }
     }
 }

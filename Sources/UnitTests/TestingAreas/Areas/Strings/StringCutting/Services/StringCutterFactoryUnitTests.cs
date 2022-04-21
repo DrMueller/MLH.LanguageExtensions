@@ -1,33 +1,32 @@
 ﻿using System;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implementation;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.StringCutting.Services
 {
-    [TestFixture]
     public class StringCutterFactoryUnitTests
     {
-        private StringCutterFactory? _sut;
+        private readonly StringCutterFactory? _sut;
 
-        [TestCase(null)]
-        [TestCase("")]
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
         public void CreatingStringCutter_PassedStringBeingNurOrEmpty_ThrowsArgumentExceptiob(string str)
         {
+            // Arrange
+            var act = () => _sut!.CreateFor(str);
+
             // Act & Assert
-            Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    _sut!.CreateFor(str);
-                });
+            act.Should().ThrowExactly<ArgumentException>();
         }
 
-        [SetUp]
-        public void Align()
+        public StringCutterFactoryUnitTests()
         {
             _sut = new StringCutterFactory();
         }
 
-        [Test]
+        [Fact]
         public void CreatingStringCutter_WithPassedString_PassesStringToCutter()
         {
             // Arrange
@@ -38,7 +37,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             actualCutter.Cut(PassedString.Length, out var actualString);
 
             // Assert
-            Assert.AreEqual(PassedString, actualString);
+            actualString.Should().Be(PassedString);
         }
     }
 }

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
 {
-    [TestFixture]
     public class EnumerableExtensionsUnitTests
     {
-        [Test]
+        [Fact]
         public void Chunk_CunkSizeBeingBiggerThanListSize_ReturnsOneChunk()
         {
             // Arrange
@@ -21,11 +21,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualChunkedList = listWith20Entries.Chunk(ChunkSize).ToList();
 
             // Assert
-            Assert.AreEqual(1, actualChunkedList.Count);
-            Assert.AreEqual(listWith20Entries.Count, actualChunkedList.Single().Count());
+            actualChunkedList.Count.Should().Be(1);
+            actualChunkedList.Single().Count().Should().Be(listWith20Entries.Count);
         }
 
-        [Test]
+        [Fact]
         public void Chunk_CunkSizeBeingEqualToListSize_ReturnsOneChunk()
         {
             // Arrange
@@ -36,11 +36,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualChunkedList = listWith20Entries.Chunk(ChunkSize).ToList();
 
             // Assert
-            Assert.AreEqual(1, actualChunkedList.Count);
-            Assert.AreEqual(listWith20Entries.Count, actualChunkedList.Single().Count());
+            actualChunkedList.Count.Should().Be(1);
+            actualChunkedList.Single().Count().Should().Be(listWith20Entries.Count);
         }
 
-        [Test]
+        [Fact]
         public void Chunk_ListBeingBiggerThanChunkSize_ReturnsChunks_WithLastChunkNotFull_AndOtherCHunksBeingFull()
         {
             // Arrange
@@ -58,13 +58,15 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var lastChunk = actualChunkedList.Last();
             var expectedSizeOfLastChunk = listWith20Entries.Count % ChunkSize;
 
-            Assert.AreEqual(expectedAmountOfChunks, actualChunkedList.Count);
-            Assert.IsNotNull(lastChunk);
-            Assert.AreEqual(lastChunk.Count(), expectedSizeOfLastChunk);
-            Assert.IsTrue(allChunksExceptLast.All(f => f.Count() == ChunkSize));
+            actualChunkedList.Count.Should().Be(expectedAmountOfChunks);
+            lastChunk.Should().NotBeNull();
+            lastChunk.Count().Should().Be(expectedSizeOfLastChunk);
+
+            var allChunksSameSize = allChunksExceptLast.All(f => f.Count() == ChunkSize);
+            allChunksSameSize.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void ContainsAny_OtherListBeingNull_ReturnsFalse()
         {
             // Arrange
@@ -79,10 +81,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualContainsAny = list1.ContainsAny(null!);
 
             // Assert
-            Assert.IsFalse(actualContainsAny);
+            actualContainsAny.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void ContainsAny_OtherListContainsEntry_ReturnsTrue()
         {
             // Arrange
@@ -104,10 +106,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualContainsAny = list1.ContainsAny(list2);
 
             // Assert
-            Assert.IsTrue(actualContainsAny);
+            actualContainsAny.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void ContainsAny_OtherListDoesNotContainEntry_ReturnsFalse()
         {
             // Arrange
@@ -129,10 +131,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualContainsAny = list1.ContainsAny(list2);
 
             // Assert
-            Assert.IsFalse(actualContainsAny);
+            actualContainsAny.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void ForEach_WithElementsInCollection_AppliesActionToAllElements()
         {
             // Arrange
@@ -149,20 +151,33 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             list.ForEach(_ => cnter++);
 
             // Assert
-            Assert.AreEqual(list.Count(), cnter);
+            cnter.Should().Be(list.Count());
         }
 
-        [Test]
+        [Fact]
         public void HasSameElementsAs_BothListsHavingSameElements_ReturnsTrue()
         {
             // Arrange
+            var list1 = new List<string>
+            {
+                "Test1",
+                "Test2",
+            };
+
+            var list2 = new List<string>
+            {
+                "Test1",
+                "Test2"
+            };
 
             // Act
+            var actualResult = list1.HasSameElementsAs(list2);
 
             // Assert
+            actualResult.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void HasSameElementsAs_OtherListHavingLessElements_ReturnsFalse()
         {
             // Arrange
@@ -183,10 +198,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualResult = list1.HasSameElementsAs(list2);
 
             // Assert
-            Assert.IsFalse(actualResult);
+            actualResult.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void HasSameElementsAs_OtherListHavingMoreElements_ReturnsFalse()
         {
             // Arrange
@@ -209,10 +224,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualResult = list1.HasSameElementsAs(list2);
 
             // Assert
-            Assert.IsFalse(actualResult);
+            actualResult.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void HasSameElementsAs_OtherListHavingSameElements_ButOtherSorting_ReturnsTrue()
         {
             // Arrange
@@ -234,13 +249,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualResult = list1.HasSameElementsAs(list2);
 
             // Assert
-            Assert.IsTrue(actualResult);
+            actualResult.Should().BeTrue();
         }
 
-        [Test]
-#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
+        [Fact]
         public async Task SelectAsync_ExecutesTasks()
-#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
         {
             // Arrange
             var intList = Enumerable.Range(0, 10).ToList();
@@ -249,10 +262,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
             var actualResult = await intList.SelectAsync(Task.FromResult);
 
             // Assert
-            CollectionAssert.AreEqual(intList, actualResult);
+            actualResult.Should().BeEquivalentTo(intList);
         }
 
-        [Test]
+        [Fact]
 #pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
         public async Task SelectAsync_ExecutesTasks_OneAfterAnother()
 #pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
@@ -270,7 +283,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
                 });
 
             // Assert
-            Assert.AreEqual(newList, actualResult);
+            actualResult.Should().BeEquivalentTo(newList);
         }
     }
 }

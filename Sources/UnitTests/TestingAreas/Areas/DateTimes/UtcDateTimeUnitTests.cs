@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.DateTimes;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
 {
-    [TestFixture]
     public class UtcDateTimeUnitTests
     {
-        [Test]
+        [Fact]
         public void CreateingEmpty_CreatesEmpty()
         {
             // Act
             var actualUtcDateTime = UtcDateTime.CreateEmpty();
 
             // Assert
-            Assert.IsFalse(actualUtcDateTime.HasValue);
+            actualUtcDateTime.HasValue.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void CreatingFromDateTime_DateTimeBeingLocalKind_DoesConvert()
         {
             // Arrange
@@ -28,26 +28,26 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             var actualUtcDateTime = UtcDateTime.CreateFromDateTime(localDateTime);
 
             // Assert
-            Assert.IsTrue(actualUtcDateTime.HasValue);
-            Assert.AreNotEqual(localDateTime.Kind, actualUtcDateTime.Value.Kind);
-            Assert.AreEqual(localDateTime.ToUniversalTime().Ticks, actualUtcDateTime.Value.Ticks);
+            actualUtcDateTime.HasValue.Should().BeTrue();
+            actualUtcDateTime.Value.Kind.Should().NotBeSameAs(localDateTime.Kind);
+            actualUtcDateTime.Value.Ticks.Should().Be(localDateTime.ToUniversalTime().Ticks);
         }
 
-        [Test]
+        [Fact]
         public void CreatingFromDateTime_DateTimeBeingNull_CreatesEmpty()
         {
             // Act
             var actualUtcDateTime = UtcDateTime.CreateFromDateTime(null);
 
             // Assert
-            Assert.IsFalse(actualUtcDateTime.HasValue);
+            actualUtcDateTime.HasValue.Should().BeFalse();
         }
 
         [SuppressMessage(
             "Microsoft.Design",
             "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "Expected Exception for test")]
-        [Test]
+        [Fact]
         public void CreatingFromDateTime_DateTimeBeingUnspecified_ThrowsException()
         {
             // Arrange
@@ -66,11 +66,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             }
 
             // Assert
-            Assert.IsNotNull(actualException);
-            Assert.IsAssignableFrom<InvalidOperationException>(actualException);
+            actualException.Should().NotBeNull();
+            actualException.Should().BeAssignableTo<InvalidOperationException>();
         }
 
-        [Test]
+        [Fact]
         public void CreatingFromDateTime_DateTimeBeingUtcKind_DoesNotConvert()
         {
             // Arrange
@@ -80,26 +80,26 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             var actualUtcDateTime = UtcDateTime.CreateFromDateTime(utcDateTime);
 
             // Assert
-            Assert.IsTrue(actualUtcDateTime.HasValue);
-            Assert.AreEqual(utcDateTime, actualUtcDateTime.Value);
+            actualUtcDateTime.HasValue.Should().BeTrue();
+            actualUtcDateTime.Value.Should().Be(utcDateTime);
         }
 
-        [Test]
+        [Fact]
         public void CreatingNow_CreatesUtcNow()
         {
             // Act
             var actualUtcDateTime = UtcDateTime.CreateNow();
 
             // Assert
-            Assert.IsTrue(actualUtcDateTime.HasValue);
-            Assert.AreEqual(DateTimeKind.Utc, actualUtcDateTime.Value.Kind);
+            actualUtcDateTime.HasValue.Should().BeTrue();
+            actualUtcDateTime.Value.Kind.Should().Be(DateTimeKind.Utc);
         }
 
         [SuppressMessage(
             "Microsoft.Design",
             "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "Expected Exception for test")]
-        [Test]
+        [Fact]
         public void GettingValue_BeingEmpty_ThrowsException()
         {
             // Arrange
@@ -119,11 +119,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             }
 
             // Assert
-            Assert.IsNotNull(actualException);
-            Assert.IsAssignableFrom<InvalidOperationException>(actualException);
+            actualException.Should().NotBeNull();
+            actualException.Should().BeAssignableTo<InvalidOperationException>();
         }
 
-        [Test]
+        [Fact]
         public void GettingValue_DateTimeBeingSet_ReturnsValue()
         {
             // Arrange
@@ -133,7 +133,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
             var actualUtcDateTime = UtcDateTime.CreateFromDateTime(localDateTime);
 
             // Assert
-            Assert.AreEqual(localDateTime.ToUniversalTime(), actualUtcDateTime.Value);
+            actualUtcDateTime.Value.Should().Be(localDateTime.ToUniversalTime());
         }
     }
 }

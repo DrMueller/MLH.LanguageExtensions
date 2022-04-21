@@ -7,7 +7,7 @@
             Content = content;
         }
 
-        public TRight Content { get; }
+        private TRight Content { get; }
 
         public TRight ToTRight()
         {

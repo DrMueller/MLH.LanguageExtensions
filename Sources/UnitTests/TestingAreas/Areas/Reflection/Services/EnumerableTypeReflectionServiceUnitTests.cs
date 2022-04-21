@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FluentAssertions;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Services
 {
-    [TestFixture]
     public class EnumerableTypeReflectionServiceUnitTests
     {
-        private EnumerableTypeReflectionService? _sut;
+        private readonly EnumerableTypeReflectionService? _sut;
 
-        [SetUp]
-        public void SetUp()
+        public EnumerableTypeReflectionServiceUnitTests()
         {
             _sut = new EnumerableTypeReflectionService();
         }
 
-        [Test]
+        [Fact]
         public void GettingGenericTypeOfEnumerable_WithGenericList_GetsGenericType()
         {
             // Arrange
@@ -26,10 +25,10 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
             var actualGenericType = _sut!.GetGenericTypeOfIEnumerable(genericList);
 
             // Assert
-            Assert.AreEqual(actualGenericType, typeof(string));
+            actualGenericType.Should().Be(typeof(string));
         }
 
-        [Test]
+        [Fact]
         public void GettingGenericTypeOfEnumerable_WithNoNGenericList_ReturnsTypeOfObject()
         {
             // Arrange
@@ -39,7 +38,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Reflection.Ser
             var actualGenericType = _sut!.GetGenericTypeOfIEnumerable(nonGenericArrayList);
 
             // Assert
-            Assert.AreEqual(actualGenericType, typeof(object));
+            actualGenericType.Should().Be(typeof(object));
         }
     }
 }
