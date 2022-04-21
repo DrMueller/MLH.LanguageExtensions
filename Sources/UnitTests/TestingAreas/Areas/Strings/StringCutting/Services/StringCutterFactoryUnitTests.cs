@@ -9,6 +9,11 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
     {
         private readonly StringCutterFactory? _sut;
 
+        public StringCutterFactoryUnitTests()
+        {
+            _sut = new StringCutterFactory();
+        }
+
         [Theory]
         [InlineData(null)]
         [InlineData("")]
@@ -19,11 +24,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
 
             // Act & Assert
             act.Should().ThrowExactly<ArgumentException>();
-        }
-
-        public StringCutterFactoryUnitTests()
-        {
-            _sut = new StringCutterFactory();
         }
 
         [Fact]
