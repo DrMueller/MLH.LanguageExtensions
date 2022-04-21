@@ -22,7 +22,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
 
             // Assert
             actualChunkedList.Count.Should().Be(1);
-            actualChunkedList.Single().Count().Should().Be(listWith20Entries.Count);
+            actualChunkedList.Single().Length.Should().Be(listWith20Entries.Count);
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
 
             // Assert
             actualChunkedList.Count.Should().Be(1);
-            actualChunkedList.Single().Count().Should().Be(listWith20Entries.Count);
+            actualChunkedList.Single().Length.Should().Be(listWith20Entries.Count);
         }
 
         [Fact]
@@ -60,9 +60,9 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Collections
 
             actualChunkedList.Count.Should().Be(expectedAmountOfChunks);
             lastChunk.Should().NotBeNull();
-            lastChunk.Count().Should().Be(expectedSizeOfLastChunk);
+            lastChunk.Length.Should().Be(expectedSizeOfLastChunk);
 
-            var allChunksSameSize = allChunksExceptLast.All(f => f.Count() == ChunkSize);
+            var allChunksSameSize = allChunksExceptLast.All(f => f.Length == ChunkSize);
             allChunksSameSize.Should().BeTrue();
         }
 
