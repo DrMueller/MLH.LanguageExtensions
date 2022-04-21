@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
-using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Enums
 {
