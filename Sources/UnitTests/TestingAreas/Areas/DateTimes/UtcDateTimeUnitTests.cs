@@ -29,7 +29,7 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.DateTimes
 
             // Assert
             actualUtcDateTime.HasValue.Should().BeTrue();
-            actualUtcDateTime.Value.Kind.Should().NotBeSameAs(localDateTime.Kind);
+            actualUtcDateTime.Value.Kind.Should().NotBe(localDateTime.Kind);
             actualUtcDateTime.Value.Ticks.Should().Be(localDateTime.ToUniversalTime().Ticks);
         }
 
