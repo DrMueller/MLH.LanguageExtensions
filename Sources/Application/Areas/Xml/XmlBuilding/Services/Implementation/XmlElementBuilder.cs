@@ -4,7 +4,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Conditions;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementation
 {
-    public class XmlElementBuilder : IXmlElementBuilder
+    internal class XmlElementBuilder : IXmlElementBuilder
     {
         private readonly XElement _element;
         private readonly XElement _parent;

@@ -4,7 +4,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Conditions;
 
 namespace Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementation
 {
-    public class XmlAttributeBuilder : IXmlAttributeBuilder
+    internal class XmlAttributeBuilder : IXmlAttributeBuilder
     {
         private readonly string _attributeName;
         private readonly XElement _element;

@@ -3,7 +3,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Reflection.Services.Implementation;
 using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Strings.StringCutting.Services.Implementation;
-using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services.Implementation;
+using Mmu.Mlh.LanguageExtensions.Areas.Xml.XmlBuilding.Services;
 
 namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
 {
@@ -16,8 +16,8 @@ namespace Mmu.Mlh.LanguageExtensions.Infrastructure.DependencyInjection
                 {
                     scanner.AssemblyContainingType<LanguageExtensionsRegistryCollection>();
                     scanner.WithDefaultConventions();
-                    scanner.ExcludeType<XmlElementBuilder>();
-                    scanner.ExcludeType<XmlAttributeBuilder>();
+                    scanner.ExcludeType<IXmlElementBuilder>();
+                    scanner.ExcludeType<IXmlAttributeBuilder>();
                 });
 
             // Type reflection

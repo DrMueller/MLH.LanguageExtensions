@@ -14,18 +14,6 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
             _sut = new StringCutterFactory();
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void CreatingStringCutter_PassedStringBeingNurOrEmpty_ThrowsArgumentExceptiob(string str)
-        {
-            // Arrange
-            var act = () => _sut!.CreateFor(str);
-
-            // Act & Assert
-            act.Should().ThrowExactly<ArgumentException>();
-        }
-
         [Fact]
         public void CreatingStringCutter_WithPassedString_PassesStringToCutter()
         {
@@ -38,6 +26,18 @@ namespace Mmu.Mlh.LanguageExtensions.UnitTests.TestingAreas.Areas.Strings.String
 
             // Assert
             actualString.Should().Be(PassedString);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void CreatingStringCutter_PassedStringBeingNurOrEmpty_ThrowsArgumentExceptiob(string str)
+        {
+            // Arrange
+            var act = () => _sut!.CreateFor(str);
+
+            // Act & Assert
+            act.Should().ThrowExactly<ArgumentException>();
         }
     }
 }
