@@ -4,14 +4,14 @@
     {
         private readonly T _content;
 
-        public static implicit operator T(Some<T> value)
-        {
-            return value._content;
-        }
-
         public Some(T content)
         {
             _content = content;
+        }
+
+        public static implicit operator T(Some<T> value)
+        {
+            return value._content;
         }
 
         public override bool Equals(Maybe<T> other)
@@ -27,7 +27,7 @@
         public bool Equals(Some<T>? other)
         {
             return !ReferenceEquals(null, other) &&
-                ContentEquals(other._content);
+                   ContentEquals(other._content);
         }
 
         public override int GetHashCode()

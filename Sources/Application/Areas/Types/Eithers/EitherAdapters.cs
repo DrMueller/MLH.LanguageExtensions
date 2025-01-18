@@ -64,7 +64,9 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Types.Eithers
         public static async Task<Either<TLeft, TNewRight>> MapRightAsync<TLeft, TRight, TNewRight>(
             this Task<Either<TLeft, TRight>> eitherTask, Func<TRight, Task<TNewRight>> map)
         {
+#pragma warning disable VSTHRD003
             var either = await eitherTask;
+#pragma warning restore VSTHRD003
 
             if (either is Right<TLeft, TRight> right)
             {
