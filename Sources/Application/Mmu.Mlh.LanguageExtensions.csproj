@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/DrMueller/MLH.LanguageExtensions</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageLicenseUrl></PackageLicenseUrl>
+	<PackageId>MyLittleHelpers.LanguageExtensions</PackageId>
     <AssemblyVersion Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</AssemblyVersion>
     <FileVersion Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</FileVersion>
     <Version Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</Version>
