@@ -25,8 +25,7 @@ namespace Mmu.Mlh.LanguageExtensions.Areas.Markdown
             var columnWidths = properties
                 .Select(p => Math.Max(
                     p.Name.Length,
-                    items.Max(item => p.GetValue(item)?.ToString()?.Length ?? 0)
-                )).ToArray();
+                    items.Max(item => p.GetValue(item)?.ToString()?.Length ?? 0))).ToArray();
 
             var markdownBuilder = new StringBuilder();
 
